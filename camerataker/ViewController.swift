@@ -26,10 +26,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         var image = UIImagePickerController()
         image.delegate = self
         image.sourceType = UIImagePickerControllerSourceType.Camera
+        //image.mediaTypes = [EXIF]
         image.allowsEditing = false
         self.presentViewController(image, animated: true, completion: nil)
-        
     }
+    
     
     func imagePickerController(image: UIImagePickerController, didFinishPickingMediaWithInfo info: NSDictionary){
         println(image)
@@ -37,10 +38,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         var chosenImage: UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
         self.imageView.image = chosenImage
         println("pop")
-        
         self.dismissModalViewControllerAnimated(true)
-
     }
-
+    
+    @IBAction func getCurrentLocation(sender : UIButton) {
+      
+    }
+    
 }
 
