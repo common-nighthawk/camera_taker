@@ -15,6 +15,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let locationManager = CLLocationManager()
     var myLong = 0.0
     var myLat = 0.0
+    var answerlat = ""
+    var answerlong = ""
     
     // after the view loads, start getting location
     override func viewDidLoad() {
@@ -30,10 +32,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // tag textfield, image, latitude, and longitude with variable names
-    @IBOutlet var textTask: UITextField!
+   
     @IBOutlet var latitudeLabel : UILabel
     @IBOutlet var longitudeLabel : UILabel
     @IBOutlet var imageView : UIImageView = nil
+    @IBOutlet var textMem : UITextField
     
     
     override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
@@ -58,48 +61,47 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // saves the photo to the variable
     func imagePickerController(image: UIImagePickerController, didFinishPickingMediaWithInfo info: NSDictionary){
-        println(image)
-        println(info)
+        //println(image)
+        //println(info)
         var chosenImage: UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
         self.imageView.image = chosenImage
-        println("pop")
+        //println("pop")
         self.dismissModalViewControllerAnimated(true)
     }
     
     // sets the actual long and lat values to the variables and convert to strings with 6 deceimal places
+    var once = 1
     func locationManager(manager:CLLocationManager!, didUpdateLocations locations:AnyObject[]) {
-        myLong = locations[0].coordinate.latitude
-        myLat = locations[0].coordinate.longitude
-        
-        var answerlat = ""
-        var answerlong = ""
-        var counterlat = 0
-        var counterlong = 0
-        
-        for x in "\(myLat)" {
-            if x == "." { counterlat = 1 }
-            if counterlat < 8 { answerlat += x }
-            counterlat += 1
+        if once == 1 {
+            myLong = locations[0].coordinate.latitude
+            myLat = locations[0].coordinate.longitude
+            
+            var counterlat = 0
+            var counterlong = 0
+            
+            for x in "\(myLat)" {
+                if x == "." { counterlat = 1 }
+                if counterlat < 8 { answerlat += x }
+                counterlat += 1
+            }
+            
+            for x in "\(myLong)" {
+                if x == "." { counterlong = 1 }
+                if counterlong < 8 { answerlong += x }
+                counterlong += 1
+            }
         }
-        
-        for x in "\(myLong)" {
-            if x == "." { counterlong = 1 }
-            if counterlong < 8 { answerlong += x }
-            counterlong += 1
-        }
-        
-        longitudeLabel.text = answerlat
-        latitudeLabel.text = answerlong
-        println(answerlat)
-        println(answerlong)
+        once += 1
     }
-
+    
     // submit memory button
     @IBAction func btnCaptureMem(sender : UIButton) {
-        println("Button was clicked")
-        println(textTask.text)
+        // println("Button was clicked")
+        println(textMem.text)
         self.view.endEditing(true)
-        textTask.text = ""
+        textMem.text = ""
+        println(answerlat)
+        println(answerlong)
         // self.tabBarController.selectedIndex = 0
         // INSET POP UP HERE THAT MEM WAS SAVED
         // AND MOVE USER TO HOME PAGE
