@@ -12,6 +12,7 @@
 		091489A9194CE20F008D2E38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 091489A7194CE20F008D2E38 /* Main.storyboard */; };
 		091489AB194CE20F008D2E38 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 091489AA194CE20F008D2E38 /* Images.xcassets */; };
 		091489B7194CE20F008D2E38 /* cameratakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091489B6194CE20F008D2E38 /* cameratakerTests.swift */; };
+		091489C1194D3184008D2E38 /* ViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091489C0194D3184008D2E38 /* ViewControllerTwo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		091489B0194CE20F008D2E38 /* cameratakerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cameratakerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		091489B5194CE20F008D2E38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		091489B6194CE20F008D2E38 /* cameratakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameratakerTests.swift; sourceTree = "<group>"; };
+		091489C0194D3184008D2E38 /* ViewControllerTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTwo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			children = (
 				091489A3194CE20F008D2E38 /* AppDelegate.swift */,
 				091489A5194CE20F008D2E38 /* ViewController.swift */,
+				091489C0194D3184008D2E38 /* ViewControllerTwo.swift */,
 				091489A7194CE20F008D2E38 /* Main.storyboard */,
 				091489AA194CE20F008D2E38 /* Images.xcassets */,
 				091489A1194CE20F008D2E38 /* Supporting Files */,
@@ -211,6 +214,7 @@
 			files = (
 				091489A6194CE20F008D2E38 /* ViewController.swift in Sources */,
 				091489A4194CE20F008D2E38 /* AppDelegate.swift in Sources */,
+				091489C1194D3184008D2E38 /* ViewControllerTwo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
