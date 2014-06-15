@@ -73,8 +73,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var once = 1
     func locationManager(manager:CLLocationManager!, didUpdateLocations locations:AnyObject[]) {
         if once == 1 {
-            myLong = locations[0].coordinate.latitude
-            myLat = locations[0].coordinate.longitude
+            myLat = locations[0].coordinate.latitude
+            myLong = locations[0].coordinate.longitude
+            println(myLat)
+            println(myLong)
+            
             
             var counterlat = 0
             var counterlong = 0
@@ -97,11 +100,29 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // submit memory button
     @IBAction func btnCaptureMem(sender : UIButton) {
         // println("Button was clicked")
-        println(textMem.text)
+        var myText = textMem.text
         self.view.endEditing(true)
         textMem.text = ""
-        println(answerlat)
-        println(answerlong)
+        var myLat = answerlat
+        var myLong = answerlong
+
+        var postString = NSString(format: "text=\(myText)&latitude=\(answerlat)&longitude=\(answerlong)")
+        var postData = postString.dataUsingEncoding(NSUTF8StringEncoding)
+        var url = NSURL(string: "http://young-beach-6740.herokuapp.com/memories")
+        
+        // creating post request
+        var request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.HTTPBody = postData
+        request.setValue("text/xml", forHTTPHeaderField: "X-Requested-With")
+        
+        println(request.HTTPBody)
+        
+        var connection = NSURLConnection(request: request, delegate: self, startImmediately: false)
+        
+        connection.start()
+
+        
         // self.tabBarController.selectedIndex = 0
         // INSET POP UP HERE THAT MEM WAS SAVED
         // AND MOVE USER TO HOME PAGE
