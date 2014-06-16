@@ -23,6 +23,11 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
+        var timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+    }
+    
+    func update() {
+        println("YEAH")
     }
     
     // standard
@@ -98,5 +103,4 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
             changeURL.text = "\(getUrl)"
             changeImage.image = UIImage(data: imgData)
     }
-
 }

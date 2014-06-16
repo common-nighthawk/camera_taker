@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--View Controller Home-->
         <scene sceneID="NmO-TM-UXq">
             <objects>
-                <viewController id="AKg-oi-125" sceneMemberID="viewController">
+                <viewController id="AKg-oi-125" customClass="ViewControllerHome" customModule="camerataker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="llW-wB-eau">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,10 +36,20 @@
                                     <segue destination="mLW-Gv-DcV" kind="push" id="aKV-St-9OZ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(a memory is waiting for you)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8HC-r8-dG6">
+                                <rect key="frame" x="75" y="368" width="221" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="n3K-Ui-d41"/>
+                    <connections>
+                        <outlet property="changeMemWait" destination="8HC-r8-dG6" id="Oa0-p5-Bix"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gYE-P8-Pxu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

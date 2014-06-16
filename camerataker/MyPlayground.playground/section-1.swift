@@ -21,5 +21,8 @@ for x in str {
 println(answerlat)
 
 
+var startTime = NSDate()
 
+var nowTime = NSDate()
 
+var timeElapsed = nowTime.timeIntervalSinceDate(startTime)
