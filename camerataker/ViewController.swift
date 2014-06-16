@@ -31,10 +31,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.didReceiveMemoryWarning()
     }
     
-    // tag textfield, image, latitude, and longitude with variable names
+    // tag textfield and image with variable names
    
-    @IBOutlet var latitudeLabel : UILabel
-    @IBOutlet var longitudeLabel : UILabel
     @IBOutlet var imageView : UIImageView = nil
     @IBOutlet var textMem : UITextField
     

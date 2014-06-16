@@ -13,6 +13,7 @@
 		091489AB194CE20F008D2E38 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 091489AA194CE20F008D2E38 /* Images.xcassets */; };
 		091489B7194CE20F008D2E38 /* cameratakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091489B6194CE20F008D2E38 /* cameratakerTests.swift */; };
 		0982981C194D41D000BB798F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0982981B194D41D000BB798F /* CoreLocation.framework */; };
+		098F0480194E868B004FBE48 /* ViewControllerGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F047F194E868B004FBE48 /* ViewControllerGet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 		091489B6194CE20F008D2E38 /* cameratakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameratakerTests.swift; sourceTree = "<group>"; };
 		0982981B194D41D000BB798F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		098F047E194D63D9004FBE48 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
+		098F047F194E868B004FBE48 /* ViewControllerGet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewControllerGet.swift; path = ../ViewControllerGet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,9 +84,10 @@
 			children = (
 				091489A3194CE20F008D2E38 /* AppDelegate.swift */,
 				091489A5194CE20F008D2E38 /* ViewController.swift */,
-				098F047E194D63D9004FBE48 /* MyPlayground.playground */,
+				098F047F194E868B004FBE48 /* ViewControllerGet.swift */,
 				091489A7194CE20F008D2E38 /* Main.storyboard */,
 				091489AA194CE20F008D2E38 /* Images.xcassets */,
+				098F047E194D63D9004FBE48 /* MyPlayground.playground */,
 				091489A1194CE20F008D2E38 /* Supporting Files */,
 			);
 			path = camerataker;
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				091489A6194CE20F008D2E38 /* ViewController.swift in Sources */,
+				098F0480194E868B004FBE48 /* ViewControllerGet.swift in Sources */,
 				091489A4194CE20F008D2E38 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
