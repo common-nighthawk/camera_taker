@@ -75,8 +75,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if once == 1 {
             myLat = locations[0].coordinate.latitude
             myLong = locations[0].coordinate.longitude
-            println(myLat)
-            println(myLong)
+            //println(myLat)
+            //println(myLong)
             
             
             var counterlat = 0
@@ -103,6 +103,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         var myText = textMem.text
         self.view.endEditing(true)
         textMem.text = ""
+        imageView.image = nil
         var myLat = answerlat
         var myLong = answerlong
 
@@ -116,7 +117,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         request.HTTPBody = postData
         request.setValue("text/xml", forHTTPHeaderField: "X-Requested-With")
         
-        println(request.HTTPBody)
+        //println(request.HTTPBody)
         
         var connection = NSURLConnection(request: request, delegate: self, startImmediately: false)
         
