@@ -14,8 +14,8 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     let locationManager = CLLocationManager()
     var myLong = 0.0
     var myLat = 0.0
-    var answerlat = ""
-    var answerlong = ""
+    var answerLat = ""
+    var answerLong = ""
 
     // after the view loads, start getting location
     override func viewDidLoad() {
@@ -31,75 +31,72 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     }
     
     @IBOutlet var changeText : UILabel
-    @IBOutlet var changeImage : UIImageView
     @IBOutlet var changeLat : UILabel
     @IBOutlet var changeLong : UILabel
+    @IBOutlet var changeURL : UILabel
+    @IBOutlet var changeImage : UIImageView = nil
     
     var once = 1
     func locationManager(manager:CLLocationManager!, didUpdateLocations locations:AnyObject[]) {
         if once == 1 {
             myLat = locations[0].coordinate.latitude
-            myLong = locations[0].coordinate.longitude * -1
+            myLong = locations[0].coordinate.longitude * -1  //SEE IF WE CAN FIX THIS THROUGH THE API
 
             var counterlat = 0
             var counterlong = 0
             
             for x in "\(myLat)" {
                 if x == "." { counterlat = 1 }
-                if counterlat < 8 { answerlat += x }
+                if counterlat < 8 { answerLat += x }
                 counterlat += 1
             }
-            
             for x in "\(myLong)" {
                 if x == "." { counterlong = 1 }
-                if counterlong < 8 { answerlong += x }
+                if counterlong < 8 { answerLong += x }
                 counterlong += 1
             }
         }
         once += 1
     }
 
-    @IBAction func getMemory(sender : UIButton) {        
-        println("GET requesting.")
-        
-        var long = answerlong
-        var lat = answerlat
-        println(long)
-        println(lat)
-        
-        var url = NSURL(string: "http://young-beach-6740.herokuapp.com/memories?latitude=\(lat)&longitude=\(long)")
+    
+    
+    @IBAction func getMemory(sender : UIButton) {
+        var url = NSURL(string: "http://young-beach-6740.herokuapp.com/memories?latitude=\(answerLat)&longitude=\(answerLong)")
         println(url)
         
         var request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "GET"
         request.setValue("text/xml", forHTTPHeaderField: "X-Requested-With")
         
-        println(request)
-        
         var connection = NSURLConnection(request: request, delegate: self, startImmediately: false)
-        
-        println(connection)
-        
         connection.start()
-        
     }
     
-    
     func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
-        println("pop")
+        var getText = ""
+        var getUrl = ""
+        
         if data.length == 4 {
-            changeText.text = "Just keep walking"
-            changeLat.text = answerlat
-            changeLong.text = answerlong
+            getText = "Just keep walking"
+            getUrl = "http://justsomething.co/wp-content/uploads/2014/01/hilarious-alpaca-hairstyles-12.jpg"
         }
         else {
             var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
-            var getText = jsonResult["text"]
-            changeText.text = "\(getText)"
-            changeLat.text = answerlat
-            changeLong.text = answerlong
-
+            var myText = jsonResult["text"]
+            var myUrl = jsonResult["image"]
+            getText = "\(myText)"
+            getUrl = "\(myUrl)"
         }
+            var urlString: NSString = getUrl as NSString
+            var imgURL: NSURL = NSURL(string: urlString)
+            var imgData: NSData = NSData(contentsOfURL: imgURL)
+        
+            changeLat.text = answerLat        //REMOVE.  JUST FOR TESTING
+            changeLong.text = answerLong      //REMOVE JUST FOR TESTING
+            changeText.text = "\(getText)"
+            changeURL.text = "\(getUrl)"
+            changeImage.image = UIImage(data: imgData)
     }
 
 }

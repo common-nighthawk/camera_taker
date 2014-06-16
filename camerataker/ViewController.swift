@@ -15,8 +15,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let locationManager = CLLocationManager()
     var myLong = 0.0
     var myLat = 0.0
-    var answerlat = ""
-    var answerlong = ""
+    var answerLat = ""
+    var answerLong = ""
     
     // after the view loads, start getting location
     override func viewDidLoad() {
@@ -63,7 +63,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         //println(info)
         var chosenImage: UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
         self.imageView.image = chosenImage
-        //println("pop")
         self.dismissModalViewControllerAnimated(true)
     }
     
@@ -73,22 +72,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if once == 1 {
             myLat = locations[0].coordinate.latitude
             myLong = locations[0].coordinate.longitude
-            //println(myLat)
-            //println(myLong)
-            
-            
+
             var counterlat = 0
             var counterlong = 0
             
             for x in "\(myLat)" {
                 if x == "." { counterlat = 1 }
-                if counterlat < 8 { answerlat += x }
+                if counterlat < 8 { answerLat += x }
                 counterlat += 1
             }
-            
             for x in "\(myLong)" {
                 if x == "." { counterlong = 1 }
-                if counterlong < 8 { answerlong += x }
+                if counterlong < 8 { answerLong += x }
                 counterlong += 1
             }
         }
@@ -102,10 +97,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.view.endEditing(true)
         textMem.text = ""
         imageView.image = nil
-        var myLat = answerlat
-        var myLong = answerlong
 
-        var postString = NSString(format: "text=\(myText)&latitude=\(answerlat)&longitude=\(answerlong)")
+        var postString = NSString(format: "text=\(myText)&latitude=\(answerLat)&longitude=\(answerLong)")
         var postData = postString.dataUsingEncoding(NSUTF8StringEncoding)
         var url = NSURL(string: "http://young-beach-6740.herokuapp.com/memories")
         
@@ -115,10 +108,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         request.HTTPBody = postData
         request.setValue("text/xml", forHTTPHeaderField: "X-Requested-With")
         
-        //println(request.HTTPBody)
-        
         var connection = NSURLConnection(request: request, delegate: self, startImmediately: false)
-        
         connection.start()
 
         
@@ -129,9 +119,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         alert.addButtonWithTitle("the world ♥ you")
         alert.show()
         alert.delegate = nil
-
-        
     }
-    
 }
 
