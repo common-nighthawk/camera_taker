@@ -32,6 +32,8 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     
     @IBOutlet var changeText : UILabel
     @IBOutlet var changeImage : UIImageView
+    @IBOutlet var changeLat : UILabel
+    @IBOutlet var changeLong : UILabel
     
     var once = 1
     func locationManager(manager:CLLocationManager!, didUpdateLocations locations:AnyObject[]) {
@@ -85,14 +87,19 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     
     func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
         println("pop")
-        println(data.length)
-        println(data.description)
-        // var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
-        println("double pop")
-//        println(jsonResult["text"])
-//        var getText = jsonResult["text"]
-//        
-//        changeText.text = "\(getText)"
+        if data.length == 4 {
+            changeText.text = "Just keep walking"
+            changeLat.text = answerlat
+            changeLong.text = answerlong
+        }
+        else {
+            var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+            var getText = jsonResult["text"]
+            changeText.text = "\(getText)"
+            changeLat.text = answerlat
+            changeLong.text = answerlong
+
+        }
     }
 
 }
