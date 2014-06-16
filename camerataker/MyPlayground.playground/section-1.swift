@@ -26,3 +26,6 @@ var startTime = NSDate()
 var nowTime = NSDate()
 
 var timeElapsed = nowTime.timeIntervalSinceDate(startTime)
+
+var name = "bob"
+name.index() {}

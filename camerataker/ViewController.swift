@@ -47,7 +47,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return true
     }
     
-    // opens the camera when you git the "Take Photo" button until "Use Photo" is confirmed
+    // opens the camera when you hit the "Take Photo" button until "Use Photo" is confirmed
     // the the camera closes
     @IBAction func takePhoto(sender : UIButton) {
         var image = UIImagePickerController()
@@ -57,6 +57,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.presentViewController(image, animated: true, completion: nil)
     }
     
+    
+    var convertedJPEG = ""
     // saves the photo to the variable
     func imagePickerController(image: UIImagePickerController, didFinishPickingMediaWithInfo info: NSDictionary){
         //println(image)
@@ -64,7 +66,42 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         var chosenImage: UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
         self.imageView.image = chosenImage
         self.dismissModalViewControllerAnimated(true)
-    }
+        
+        // trying to POST image to API from phone
+        var imageData: NSData = UIImageJPEGRepresentation(chosenImage, 0.1)
+        //println(imageData)
+        
+//        NSData *imageData = [NSData dataWithData:UIImageJPEGRepresentation(image, .1)];
+//        NSString* imageString = [NSString stringWithFormat:@"%@", imageData];
+        
+//        for x in "\(imageData)" {
+//            switch x {
+//                case " ", "<", ">":
+//                    println(".")
+//                default:
+//                    convertedJPEG += x
+//            }
+//        }
+//        println(convertedJPEG)
+        
+        
+        for x in "\(imageData)" {
+            
+            if x != "<" || x != ">" || x != " " {
+                
+                convertedJPEG += x
+                
+            }
+        }
+
+        println(convertedJPEG)
+        
+        
+        
+        
+    } // function closing
+    
+    
     
     // sets the actual long and lat values to the variables and convert to strings with 6 deceimal places
     var once = 1
