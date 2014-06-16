@@ -123,9 +123,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         connection.start()
 
         
-        // self.tabBarController.selectedIndex = 0
-        // INSET POP UP HERE THAT MEM WAS SAVED
-        // AND MOVE USER TO HOME PAGE
+        // ALERT BUTTON
+        let alert = UIAlertView()
+        alert.title = "Memory Created!"
+        alert.message = "You have shared a memory for the world to experience."
+        alert.addButtonWithTitle("the world ♥ you")
+        alert.show()
+        alert.delegate = nil
+
         
     }
     
