@@ -23,12 +23,12 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
-        var timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        //var timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
     }
     
-    func update() {
-        println("YEAH")
-    }
+//    func update() {
+//        println("YEAH")
+//    }
     
     // standard
     override func didReceiveMemoryWarning() {
@@ -45,7 +45,7 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     func locationManager(manager:CLLocationManager!, didUpdateLocations locations:AnyObject[]) {
         if once == 1 {
             myLat = locations[0].coordinate.latitude
-            myLong = locations[0].coordinate.longitude * -1  //SEE IF WE CAN FIX THIS THROUGH THE API
+            myLong = locations[0].coordinate.longitude //SEE IF WE CAN FIX THIS THROUGH THE API
 
             var counterlat = 0
             var counterlong = 0
@@ -67,7 +67,7 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     
     
     @IBAction func getMemory(sender : UIButton) {
-        var url = NSURL(string: "http://young-beach-6740.herokuapp.com/memories?latitude=\(answerLat)&longitude=\(answerLong)")
+        var url = NSURL(string: "http://quiet-ravine-8717.herokuapp.com/memories/?latitude=\(answerLat)&longitude=\(answerLong)")
         println(url)
         
         var request = NSMutableURLRequest(URL: url)

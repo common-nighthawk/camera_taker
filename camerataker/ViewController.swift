@@ -120,7 +120,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
         var postString = NSString(format: "text=\(myText)&latitude=\(answerLat)&longitude=\(answerLong)&imagestring=\(img3)")
         var postData = postString.dataUsingEncoding(NSUTF8StringEncoding)
-        var url = NSURL(string: "http://young-beach-6740.herokuapp.com/memories")
+        var url = NSURL(string: "http://quiet-ravine-8717.herokuapp.com/memories")
         
         // creating post request
         var request = NSMutableURLRequest(URL: url)
