@@ -58,8 +58,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // saves the photo to the variable
-    var imgAsString = ""
-    var img3 = ""
+//    var imgAsString = ""
+//    var img3 = ""
+    var myImageData = ""
     
     func imagePickerController(image: UIImagePickerController, didFinishPickingMediaWithInfo info: NSDictionary){
         
@@ -71,18 +72,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         //START TRYING TO POST OUR IMAGE
         var imageData: NSData = UIImageJPEGRepresentation(chosenImage, 0.1)
+        myImageData = "\(imageData)"
         
-        for char in "\(imageData)" {
-            if char != " " {
-                imgAsString += char
-            }
-        }
-        
-        println(imgAsString)
-        var img2 = imgAsString.substringFromIndex(1)
-        img3 = img2.substringToIndex(countElements(img2) - 1)
-        //THIS IS A
-        println(img3)
+//        for char in "\(imageData)" {
+//            if char != " " {
+//                imgAsString += char
+//            }
+//        }
+//        
+//        println(imgAsString)
+//        var img2 = imgAsString.substringFromIndex(1)
+//        img3 = img2.substringToIndex(countElements(img2) - 1)
+//        //THIS IS A
+//        println(img3)
        
     }
     
@@ -118,7 +120,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         textMem.text = ""
         imageView.image = nil
 
-        var postString = NSString(format: "text=\(myText)&latitude=\(answerLat)&longitude=\(answerLong)&imagestring=\(img3)")
+        var postString = NSString(format: "text=\(myText)&latitude=\(answerLat)&longitude=\(answerLong)&imagestring=\(myImageData)")
         var postData = postString.dataUsingEncoding(NSUTF8StringEncoding)
         var url = NSURL(string: "http://quiet-ravine-8717.herokuapp.com/memories")
         
