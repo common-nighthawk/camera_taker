@@ -93,7 +93,7 @@
                                 </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="YQw-2k-0xC">
-                                <rect key="frame" x="77" y="131" width="167" height="220"/>
+                                <rect key="frame" x="77" y="141" width="167" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
