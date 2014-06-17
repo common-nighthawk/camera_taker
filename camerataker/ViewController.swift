@@ -58,12 +58,32 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // saves the photo to the variable
+    var imgAsString = ""
+    var img3 = ""
+    
     func imagePickerController(image: UIImagePickerController, didFinishPickingMediaWithInfo info: NSDictionary){
+        
         //println(image)
         //println(info)
         var chosenImage: UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
         self.imageView.image = chosenImage
         self.dismissModalViewControllerAnimated(true)
+        
+        //START TRYING TO POST OUR IMAGE
+        var imageData: NSData = UIImageJPEGRepresentation(chosenImage, 0.1)
+        
+        for char in "\(imageData)" {
+            if char != " " {
+                imgAsString += char
+            }
+        }
+        
+        println(imgAsString)
+        var img2 = imgAsString.substringFromIndex(1)
+        img3 = img2.substringToIndex(countElements(img2) - 1)
+        //THIS IS A
+        println(img3)
+       
     }
     
     // sets the actual long and lat values to the variables and convert to strings with 6 deceimal places
@@ -98,7 +118,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         textMem.text = ""
         imageView.image = nil
 
-        var postString = NSString(format: "text=\(myText)&latitude=\(answerLat)&longitude=\(answerLong)")
+        var postString = NSString(format: "text=\(myText)&latitude=\(answerLat)&longitude=\(answerLong)&imagestring=\(img3)")
         var postData = postString.dataUsingEncoding(NSUTF8StringEncoding)
         var url = NSURL(string: "http://young-beach-6740.herokuapp.com/memories")
         
