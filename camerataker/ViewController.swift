@@ -4,7 +4,7 @@
 //
 //  Created by Apprentice on 6/14/14.
 //  Copyright (c) 2014 Skippers. All rights reserved.
-//
+//  
 
 import UIKit
 import CoreLocation
