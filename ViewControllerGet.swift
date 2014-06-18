@@ -39,9 +39,6 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
                 self.changeText.text = self.textHacker
             }
         })
-        if self.changeText.text == "" {
-            self.changeText.text = "Keep walking around!"
-        }
     }
     
     func locationManager(manager:CLLocationManager!, didUpdateLocations locations:CLLocation[])
@@ -116,19 +113,22 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
                 println(textDictionary)
                 
                 weak var weakSelf : ViewControllerGet? = self
-                if (urlToImage)
-                {
+                if (urlToImage) {
                     var kMaybeThisIsAnImage : String = urlToImage! as String
                     println("kMaybeThisIsAnImage: \(kMaybeThisIsAnImage)")
-                    
                     weakSelf!.fetchImageAtURL(kMaybeThisIsAnImage, handler: {
                         (response: NSURLResponse!, image: UIImage!, error: NSError!) in
                         if handler
                         {
                             handler(response, image, error)
-                    }
-                })
-            }
+                        }
+                        })
+                } else {
+
+                if self.changeText.text == "" {
+                    self.changeText.text = "Keep walking around!"
+                }
+                }
         })
     }
 
