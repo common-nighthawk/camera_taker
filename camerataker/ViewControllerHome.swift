@@ -20,13 +20,12 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController.navigationBar.hidden = true;
+        self.textHacker != ""
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         
         weak var weakSelf : ViewControllerHome? = self;
-        //var myLat = 41.889663
-        //var myLong = -87.637340
         var myLat = locationManager.location.coordinate.latitude
         var myLong = locationManager.location.coordinate.longitude
         
@@ -36,11 +35,7 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
             if (!error)
             {
                 // Success! We got back an image...bind the image returned in the closure to the changeImage UIImageView
-                println("here we go--")
-                println(image.scale)
-                println(self.textHacker)
-                
-                if self.textHacker != "" ||  image.scale == 1.0 {
+                if self.textHacker != "" {
                     self.changeMemWait.text = "(a memory is waiting for you)"
                 }
             }
@@ -51,9 +46,7 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
     {
         var mostRecentLocation = locations[0]
     }
-  
-    
-    
+
     // standard
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -86,15 +79,10 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
     
     func fetchImageWithCLLocation(location: CLLocation?, handler: ((NSURLResponse!, UIImage!, NSError!) -> Void)!)
     {
-        println("--- fetch Image with Location")
-        //TODO: fetch memory text with CLLOcation.  change method need.  need to return both text and image.
-        // Create NSURLRequest object with correct properties set (base url, endpoint, url parameters, any post data, headers, etc.)
-        // Make asynchronous call using NSURLConnection using sendAsynchronousRequest (use NSOperationQueue.mainOperationQueue as the operation queue for method, pass handler as the last parameter of the method call)
         if (!location)
         {
             return;
         }
-        
         var request = NSMutableURLRequest();
         request.URL = NSURL(string: self.parameterizedURLFromLocation(location!, baseURL: "http://whispering-earth-2684.herokuapp.com/memories/"))
         request.HTTPMethod = "GET"
@@ -114,10 +102,6 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
                 var urlToImage : AnyObject? = urlDictionary["url"] as AnyObject?
                 var textDictionary : NSString = jsonResult!["text"] as NSString
                 self.textHacker = textDictionary
-                
-                println(urlDictionary)
-                println(urlToImage)
-                println(textDictionary)
                 
                 weak var weakSelf : ViewControllerHome? = self
                 if (urlToImage)
@@ -154,7 +138,6 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
     
     func parameterizedURLFromLocation(location: CLLocation, baseURL: String) -> String
     {
-        println("\(baseURL)?latitude=\(location.coordinate.latitude)&longitude=\(location.coordinate.longitude)")
         return  "\(baseURL)?latitude=\(location.coordinate.latitude)&longitude=\(location.coordinate.longitude)"
     }
 }

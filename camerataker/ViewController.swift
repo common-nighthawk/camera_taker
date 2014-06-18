@@ -86,10 +86,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // opens the camera when you git the "Take Photo" button until "Use Photo" is confirmed
     // the the camera closes
-
-    
     @IBAction func takePhoto(sender : UIButton) {
-        
         var image = UIImagePickerController()
         image.delegate = self
         image.sourceType = UIImagePickerControllerSourceType.Camera
@@ -169,4 +166,3 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
 }
-

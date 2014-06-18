@@ -26,8 +26,6 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
         locationManager.startUpdatingLocation()
         
         weak var weakSelf : ViewControllerGet? = self;
-        //var myLat = 41.889663
-        //var myLong = -87.637340
         var myLat = locationManager.location.coordinate.latitude
         var myLong = locationManager.location.coordinate.longitude
 
@@ -38,12 +36,7 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
             {
                 // Success! We got back an image...bind the image returned in the closure to the changeImage UIImageView
                 weakSelf!.changeImage.image = image
-                if self.textHacker == "" {
-                    self.changeText.text = "(This use did not enter text.  Photo only!)"
-                }
-                else {
-                    self.changeText.text = self.textHacker
-                }
+                self.changeText.text = self.textHacker
             }
         })
         if self.changeText.text == "" {
