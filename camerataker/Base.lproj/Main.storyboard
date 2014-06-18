@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Qaj-Ko-eci">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
@@ -85,6 +84,18 @@
                                     <action selector="takePhoto:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="M8O-lb-u8h"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pfc-3C-SRR">
+                                <rect key="frame" x="99" y="435" width="122" height="105"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="checkboxgreen.png">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="disabled" backgroundImage="checkboxgrey.png"/>
+                                <connections>
+                                    <action selector="btnCaptureMem:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="g8v-dE-e7j"/>
+                                </connections>
+                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="YQw-2k-0xC">
                                 <rect key="frame" x="71" y="197" width="167" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -104,23 +115,19 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="M5V-JX-OOp"/>
                                 </connections>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pfc-3C-SRR">
-                                <rect key="frame" x="99" y="435" width="122" height="105"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TJi-fE-GbT">
+                                <rect key="frame" x="14" y="65" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="checkboxgreen.png">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="disabled" backgroundImage="checkboxgrey.png"/>
-                                <connections>
-                                    <action selector="btnCaptureMem:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="g8v-dE-e7j"/>
-                                </connections>
-                            </button>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Kac-4t-Zie"/>
                     <connections>
+                        <outlet property="changeError" destination="TJi-fE-GbT" id="4aP-mD-zUC"/>
                         <outlet property="imageView" destination="YQw-2k-0xC" id="Ac0-fN-IDn"/>
                         <outlet property="textMem" destination="Liu-Hh-h5z" id="HCD-AA-XSG"/>
                     </connections>

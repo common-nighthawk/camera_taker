@@ -29,6 +29,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         
+        textMem.layer.borderWidth = 1.0
+        textMem.layer.cornerRadius = 8.0
+        
+        
         
 //            [self setView:[[[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease]];
 //            [[self view] setBackgroundColor:[UIColor colorWithRed:0.0 green:.34 blue:.74 alpha:1]];
@@ -46,10 +50,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //            [[self view] addSubview:textViewStatus];
 //        
         
-   UITextView.layerClass()
-        
-        
-        
+//   UITextView.layerClass()
         
     }
     
@@ -70,6 +71,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // tag textfield and image with variable names
     @IBOutlet var imageView : UIImageView = nil
     @IBOutlet var textMem : UITextView = nil
+    @IBOutlet var changeError : UILabel
     
     
     override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
@@ -128,41 +130,43 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         once += 1
     }
     
+    
     // submit memory button
     @IBAction func btnCaptureMem(sender : UIButton) {
-        var myText = textMem.text
-        self.view.endEditing(true)
-        
-        var url = "http://whispering-earth-2684.herokuapp.com/memories"
-        
-        let manager = AFHTTPRequestOperationManager()
-        let params = ["text":myText, "latitude":answerLat, "longitude":answerLong]
-        
-        manager.POST(url, parameters: params,
-            constructingBodyWithBlock: {
-                [weak self](formData) -> Void in
-                formData.appendPartWithFileData(UIImageJPEGRepresentation(self?.imageView?.image, 0.9), name: "image", fileName: "picture.jpg", mimeType: "image/jpeg")
-            },
-            success: {(operation, response) -> Void in
-                let alert = UIAlertView()
-                alert.title = "Memory Created!"
-                alert.message = "You have shared a memory for the world to experience."
-                alert.addButtonWithTitle("the world ♥'s you")
-                alert.show()
-                alert.delegate = nil
-            },
-            failure: {(operation, response) -> Void in
-                let failAlert = UIAlertView()
-                failAlert.title = "OOPS!"
-                failAlert.message = "Sorry, your memory could not be saved."
-                failAlert.addButtonWithTitle("Try again")
-                failAlert.show()
-                failAlert.delegate = nil
-                
-                println(response)})
-        
-        textMem.text = ""
-        imageView.image = nil
+        if (textMem.text != "") && (imageView.image != nil) {
+            var myText = textMem.text
+            self.view.endEditing(true)
+            
+            var url = "http://whispering-earth-2684.herokuapp.com/memories"
+            
+            let manager = AFHTTPRequestOperationManager()
+            let params = ["text":myText, "latitude":answerLat, "longitude":answerLong]
+            
+            manager.POST(url, parameters: params,
+                constructingBodyWithBlock: {
+                    [weak self](formData) -> Void in
+                    formData.appendPartWithFileData(UIImageJPEGRepresentation(self?.imageView?.image, 0.9), name: "image", fileName: "picture.jpg", mimeType: "image/jpeg")
+                },
+                success: {(operation, response) -> Void in
+                    println(response)
+                },
+                failure: {(operation, response) -> Void in
+                    println(response)
+                })
+            
+            let alert = UIAlertView()
+            alert.title = "Memory Created!"
+            alert.message = "You have shared a memory for the world to experience."
+            alert.addButtonWithTitle("the world ♥'s you")
+            alert.show()
+            alert.delegate = nil
+            
+            textMem.text = ""
+            imageView.image = nil
+            }
+        else {
+            changeError.text="You must enter both text and an image to submit"
+        }
     }
 }
 
