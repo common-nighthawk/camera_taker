@@ -57,34 +57,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.presentViewController(image, animated: true, completion: nil)
     }
     
-    // saves the photo to the variable
-//    var imgAsString = ""
-//    var img3 = ""
-    var myImageData = ""
+    
+    //Initialize camera data string
+    
     
     func imagePickerController(image: UIImagePickerController, didFinishPickingMediaWithInfo info: NSDictionary){
-        
-        //println(image)
-        //println(info)
         var chosenImage: UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
         self.imageView.image = chosenImage
         self.dismissModalViewControllerAnimated(true)
-        
-        //START TRYING TO POST OUR IMAGE
         var imageData: NSData = UIImageJPEGRepresentation(chosenImage, 0.1)
-        myImageData = "\(imageData)"
         
-//        for char in "\(imageData)" {
-//            if char != " " {
-//                imgAsString += char
-//            }
-//        }
-//        
-//        println(imgAsString)
-//        var img2 = imgAsString.substringFromIndex(1)
-//        img3 = img2.substringToIndex(countElements(img2) - 1)
-//        //THIS IS A
-//        println(img3)
        
     }
     
@@ -114,10 +96,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // submit memory button
     @IBAction func btnCaptureMem(sender : UIButton) {
-        // println("Button was clicked")
         var myText = textMem.text
         self.view.endEditing(true)
-        textMem.text = ""
         
         
         var url = "http://whispering-earth-2684.herokuapp.com/memories"
@@ -134,12 +114,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 let alert = UIAlertView()
                 alert.title = "Memory Created!"
                 alert.message = "You have shared a memory for the world to experience."
-                alert.addButtonWithTitle("the world ♥ you")
+                alert.addButtonWithTitle("the world ♥'s you")
                 alert.show()
                 alert.delegate = nil
             },
-            failure: {(operation, response) -> Void in println(response)})
-
+            failure: {(operation, response) -> Void in
+                let failAlert = UIAlertView()
+                failAlert.title = "OOPS!"
+                failAlert.message = "Sorry, your memory could not be saved."
+                failAlert.addButtonWithTitle("Try again")
+                failAlert.show()
+                failAlert.delegate = nil
+                
+                
+                
+                println(response)})
+        
+        textMem.text = ""
         imageView.image = nil
         
     
