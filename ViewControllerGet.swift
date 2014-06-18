@@ -27,9 +27,12 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
  
 //Sid -- what is this doing?
         weak var weakSelf : ViewControllerGet? = self;
-        // lat,lon 41.889663, -87.637340
-//        println(location.coordinate.latitude)
-        var testLocation = CLLocation(latitude: 41.889663, longitude: -87.637340)
+        //var myLat = 41.889663
+        //var myLong = -87.637340
+        var myLat = locationManager.location.coordinate.latitude
+        var myLong = locationManager.location.coordinate.longitude
+
+        var testLocation = CLLocation(latitude: myLat, longitude: myLong)
         self.fetchImageWithCLLocation(testLocation, handler: {
             (response: NSURLResponse!, image: UIImage!, error: NSError!) in
             if (!error)
@@ -39,6 +42,12 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
             }
         })
     }
+    
+    func locationManager(manager:CLLocationManager!, didUpdateLocations locations:CLLocation[])
+    {
+        var mostRecentLocation = locations[0]
+    }
+    
     
     // standard
     override func didReceiveMemoryWarning() {
@@ -76,29 +85,30 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
 //        once += 1
 //    }
 
-// Sid
-    func locationManager(manager:CLLocationManager!, didUpdateLocations locations:CLLocation[])
-    {
-        // locations array will contain CLLocation objects in chronological order - Most recent first
-        // For our case, we shoud only need to get the first object in this array
-        
-        // Grab the latitude and long from this CLLocation object
-        // call method to fetch image from services (backend) using lat/long
-        // ex. - func fetchImageWithCLLocation(location: CLLocation, handler: {(image: UIImage, error: NSError)()}.....handler should be a closure
-        var mostRecentLocation = locations[0]
-        weak var weakSelf : ViewControllerGet? = self
-   // ON BUTTON CLICK....
-        // the variable 'handler' is a closure that gets executed once a response comes back from the backend
-        self.fetchImageWithCLLocation(mostRecentLocation, handler: {
-            (response: NSURLResponse!, image: UIImage!, error: NSError!) in
-            if (error)
-            {
-                // Success! We got back an image...bind the image returned in the closure to the changeImage UIImageView
-                weakSelf!.changeImage.image = image
-            }
-        })
-    }
-//
+    
+//    
+// SID SET THIS UP FOR OUR LOGIC TO CHECK ONCE EVERY CHANGE IN X FEET
+//    func locationManager(manager:CLLocationManager!, didUpdateLocations locations:CLLocation[])
+//    {
+//        // locations array will contain CLLocation objects in chronological order - Most recent first
+//        // For our case, we shoud only need to get the first object in this array
+//        
+//        // Grab the latitude and long from this CLLocation object
+//        // call method to fetch image from services (backend) using lat/long
+//        // ex. - func fetchImageWithCLLocation(location: CLLocation, handler: {(image: UIImage, error: NSError)()}.....handler should be a closure
+//        var mostRecentLocation = locations[0]
+//        weak var weakSelf : ViewControllerGet? = self
+//   // ON BUTTON CLICK....
+//        // the variable 'handler' is a closure that gets executed once a response comes back from the backend
+//        self.fetchImageWithCLLocation(mostRecentLocation, handler: {
+//            (response: NSURLResponse!, image: UIImage!, error: NSError!) in
+//            if (error)
+//            {
+//                // Success! We got back an image...bind the image returned in the closure to the changeImage UIImageView
+//                weakSelf!.changeImage.image = image
+//            }
+//        })
+//    }
     
     
     func fetchImageWithCLLocation(location: CLLocation?, handler: ((NSURLResponse!, UIImage!, NSError!) -> Void)!)
@@ -154,7 +164,6 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
 
     func fetchImageAtURL(url: String, handler: ((NSURLResponse!, UIImage!, NSError!) -> Void)!)
     {
-        println("fuck yeah")
         var request = NSMutableURLRequest();
         request.URL = NSURL(string: url)
         request.HTTPMethod = "GET"
@@ -176,43 +185,45 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     }
 
     
-// Manually retrieve memory
-    @IBAction func getMemory(sender : UIButton) {
-        
-        var url = NSURL(string: "http://whispering-earth-2684.herokuapp.com/memories/?latitude=\(answerLat)&longitude=\(answerLong)")
-        println(url)
-        
-        var request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "GET"
-        request.setValue("text/xml", forHTTPHeaderField: "X-Requested-With")
-        
-        var connection = NSURLConnection(request: request, delegate: self, startImmediately: false)
-        connection.start()
-    }
+// Manually retrieve memory.  WE ARE REMOVING THIS BUTTON.  NEED TO STEAL LOGIC FOR IF NO MEMORY
+//    @IBAction func getMemory(sender : UIButton) {
+//        
+//        var url = NSURL(string: "http://whispering-earth-2684.herokuapp.com/memories/?latitude=\(answerLat)&longitude=\(answerLong)")
+//        println(url)
+//        
+//        var request = NSMutableURLRequest(URL: url)
+//        request.HTTPMethod = "GET"
+//        request.setValue("text/xml", forHTTPHeaderField: "X-Requested-With")
+//        
+//        var connection = NSURLConnection(request: request, delegate: self, startImmediately: false)
+//        connection.start()
+//    }
+//    
+//    func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
+//        var getText = ""
+//        var getUrl = ""
+//        
+//        if data.length == 4 {
+//            getText = "Just keep walking"
+//            getUrl = "http://justsomething.co/wp-content/uploads/2014/01/hilarious-alpaca-hairstyles-12.jpg"
+//        }
+//        else {
+//            var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+//            var myText = jsonResult["text"]
+//            var myUrl = jsonResult["image"]
+//            getText = "\(myText)"
+//            getUrl = "\(myUrl)"
+//        }
+//            var urlString: NSString = getUrl as NSString
+//            var imgURL: NSURL = NSURL(string: urlString)
+//            var imgData: NSData = NSData(contentsOfURL: imgURL)
+//        
+//            changeLat.text = answerLat        //REMOVE.  JUST FOR TESTING
+//            changeLong.text = answerLong      //REMOVE JUST FOR TESTING
+//            changeText.text = "\(getText)"
+//            changeURL.text = "\(getUrl)"
+//            changeImage.image = UIImage(data: imgData)
+//    }
     
-    func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
-        var getText = ""
-        var getUrl = ""
-        
-        if data.length == 4 {
-            getText = "Just keep walking"
-            getUrl = "http://justsomething.co/wp-content/uploads/2014/01/hilarious-alpaca-hairstyles-12.jpg"
-        }
-        else {
-            var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
-            var myText = jsonResult["text"]
-            var myUrl = jsonResult["image"]
-            getText = "\(myText)"
-            getUrl = "\(myUrl)"
-        }
-            var urlString: NSString = getUrl as NSString
-            var imgURL: NSURL = NSURL(string: urlString)
-            var imgData: NSData = NSData(contentsOfURL: imgURL)
-        
-            changeLat.text = answerLat        //REMOVE.  JUST FOR TESTING
-            changeLong.text = answerLong      //REMOVE JUST FOR TESTING
-            changeText.text = "\(getText)"
-            changeURL.text = "\(getUrl)"
-            changeImage.image = UIImage(data: imgData)
-    }
+    
 }
