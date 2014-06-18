@@ -9,8 +9,11 @@
 import UIKit
 import CoreLocation
 
+
+
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate , UITextFieldDelegate, CLLocationManagerDelegate {
     
+
     // init location manager and set coordinates to 0
     let locationManager = CLLocationManager()
     var myLong = 0.0
@@ -24,6 +27,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
+        
+    }
+    
+
+// from Sid. don't know what it does
+    override func viewDidAppear(animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        
     }
     
     // standard
@@ -31,8 +43,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.didReceiveMemoryWarning()
     }
     
+    
     // tag textfield and image with variable names
-   
     @IBOutlet var imageView : UIImageView = nil
     @IBOutlet var textMem : UITextField
     
@@ -49,7 +61,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // opens the camera when you git the "Take Photo" button until "Use Photo" is confirmed
     // the the camera closes
+
+    
     @IBAction func takePhoto(sender : UIButton) {
+        
         var image = UIImagePickerController()
         image.delegate = self
         image.sourceType = UIImagePickerControllerSourceType.Camera
