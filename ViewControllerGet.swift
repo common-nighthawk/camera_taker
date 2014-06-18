@@ -15,9 +15,6 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     var textHacker = ""
     
     @IBOutlet var changeText : UILabel
-    @IBOutlet var changeLat : UILabel
-    @IBOutlet var changeLong : UILabel
-    @IBOutlet var changeURL : UILabel
     @IBOutlet var changeImage : UIImageView
 
     // after the view loads, start getting location
@@ -40,7 +37,12 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
             {
                 // Success! We got back an image...bind the image returned in the closure to the changeImage UIImageView
                 weakSelf!.changeImage.image = image
-                self.changeText.text = self.textHacker
+                if self.textHacker == "" {
+                    self.changeText.text = "(This use did not enter text.  Photo only!)"
+                }
+                else {
+                    self.changeText.text = self.textHacker
+                }
             }
         })
     }
