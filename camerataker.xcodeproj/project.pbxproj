@@ -9,12 +9,20 @@
 /* Begin PBXBuildFile section */
 		091489A4194CE20F008D2E38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091489A3194CE20F008D2E38 /* AppDelegate.swift */; };
 		091489A6194CE20F008D2E38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091489A5194CE20F008D2E38 /* ViewController.swift */; };
-		091489A9194CE20F008D2E38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 091489A7194CE20F008D2E38 /* Main.storyboard */; };
-		091489AB194CE20F008D2E38 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 091489AA194CE20F008D2E38 /* Images.xcassets */; };
 		091489B7194CE20F008D2E38 /* cameratakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091489B6194CE20F008D2E38 /* cameratakerTests.swift */; };
+		097665CA1951201300FA3B6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 091489A7194CE20F008D2E38 /* Main.storyboard */; };
+		097665D11951211500FA3B6E /* checkboxgrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 097665CF1951211500FA3B6E /* checkboxgrey.png */; };
+		097665D21951211500FA3B6E /* checkboxgrey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 097665D01951211500FA3B6E /* checkboxgrey@2x.png */; };
 		0982981C194D41D000BB798F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0982981B194D41D000BB798F /* CoreLocation.framework */; };
 		09890D0B194F731800E2BC76 /* ViewControllerHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09890D0A194F731800E2BC76 /* ViewControllerHome.swift */; };
-		098F0480194E868B004FBE48 /* ViewControllerGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F047F194E868B004FBE48 /* ViewControllerGet.swift */; };
+		098F0480194E868B004FBE48 /* MemoryRetrievalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F047F194E868B004FBE48 /* MemoryRetrievalViewController.swift */; };
+		099B7B7C1951178A0076C8F3 /* checkboxgreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 099B7B7A1951178A0076C8F3 /* checkboxgreen.png */; };
+		099B7B7D1951178A0076C8F3 /* checkboxgreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 099B7B7B1951178A0076C8F3 /* checkboxgreen@2x.png */; };
+		099B7B84195117970076C8F3 /* photoicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 099B7B82195117970076C8F3 /* photoicon.png */; };
+		099B7B85195117970076C8F3 /* photoicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 099B7B83195117970076C8F3 /* photoicon@2x.png */; };
+		099B7B88195117A20076C8F3 /* penicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 099B7B86195117A20076C8F3 /* penicon.png */; };
+		099B7B89195117A20076C8F3 /* penicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 099B7B87195117A20076C8F3 /* penicon@2x.png */; };
+		099B7B8B19511DF50076C8F3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 099B7B8A19511DF50076C8F3 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,14 +41,22 @@
 		091489A3194CE20F008D2E38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		091489A5194CE20F008D2E38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		091489A8194CE20F008D2E38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		091489AA194CE20F008D2E38 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		091489B0194CE20F008D2E38 /* cameratakerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cameratakerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		091489B5194CE20F008D2E38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		091489B6194CE20F008D2E38 /* cameratakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameratakerTests.swift; sourceTree = "<group>"; };
+		097665CF1951211500FA3B6E /* checkboxgrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxgrey.png; sourceTree = "<group>"; };
+		097665D01951211500FA3B6E /* checkboxgrey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkboxgrey@2x.png"; sourceTree = "<group>"; };
 		0982981B194D41D000BB798F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		09890D0A194F731800E2BC76 /* ViewControllerHome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerHome.swift; sourceTree = "<group>"; };
 		098F047E194D63D9004FBE48 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
-		098F047F194E868B004FBE48 /* ViewControllerGet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewControllerGet.swift; path = ../ViewControllerGet.swift; sourceTree = "<group>"; };
+		098F047F194E868B004FBE48 /* MemoryRetrievalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemoryRetrievalViewController.swift; path = ../MemoryRetrievalViewController.swift; sourceTree = "<group>"; };
+		099B7B7A1951178A0076C8F3 /* checkboxgreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxgreen.png; sourceTree = "<group>"; };
+		099B7B7B1951178A0076C8F3 /* checkboxgreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkboxgreen@2x.png"; sourceTree = "<group>"; };
+		099B7B82195117970076C8F3 /* photoicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photoicon.png; sourceTree = "<group>"; };
+		099B7B83195117970076C8F3 /* photoicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photoicon@2x.png"; sourceTree = "<group>"; };
+		099B7B86195117A20076C8F3 /* penicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = penicon.png; sourceTree = "<group>"; };
+		099B7B87195117A20076C8F3 /* penicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "penicon@2x.png"; sourceTree = "<group>"; };
+		099B7B8A19511DF50076C8F3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,10 +81,10 @@
 		09148995194CE20F008D2E38 = {
 			isa = PBXGroup;
 			children = (
-				0982981B194D41D000BB798F /* CoreLocation.framework */,
 				091489A0194CE20F008D2E38 /* camerataker */,
 				091489B3194CE20F008D2E38 /* cameratakerTests */,
 				0914899F194CE20F008D2E38 /* Products */,
+				0982981B194D41D000BB798F /* CoreLocation.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,11 +102,12 @@
 			children = (
 				091489A3194CE20F008D2E38 /* AppDelegate.swift */,
 				091489A5194CE20F008D2E38 /* ViewController.swift */,
-				098F047F194E868B004FBE48 /* ViewControllerGet.swift */,
+				098F047F194E868B004FBE48 /* MemoryRetrievalViewController.swift */,
 				09890D0A194F731800E2BC76 /* ViewControllerHome.swift */,
 				091489A7194CE20F008D2E38 /* Main.storyboard */,
-				091489AA194CE20F008D2E38 /* Images.xcassets */,
 				098F047E194D63D9004FBE48 /* MyPlayground.playground */,
+				099B7B651951169A0076C8F3 /* Assets */,
+				099B7B8A19511DF50076C8F3 /* Images.xcassets */,
 				091489A1194CE20F008D2E38 /* Supporting Files */,
 			);
 			path = camerataker;
@@ -119,6 +136,45 @@
 				091489B5194CE20F008D2E38 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		099B7B651951169A0076C8F3 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				099B7B75195117330076C8F3 /* Note take */,
+				099B7B6B195116DC0076C8F3 /* Check button */,
+				099B7B6A195116C20076C8F3 /* Photo */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		099B7B6A195116C20076C8F3 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				099B7B82195117970076C8F3 /* photoicon.png */,
+				099B7B83195117970076C8F3 /* photoicon@2x.png */,
+			);
+			name = Photo;
+			sourceTree = "<group>";
+		};
+		099B7B6B195116DC0076C8F3 /* Check button */ = {
+			isa = PBXGroup;
+			children = (
+				097665CF1951211500FA3B6E /* checkboxgrey.png */,
+				097665D01951211500FA3B6E /* checkboxgrey@2x.png */,
+				099B7B7A1951178A0076C8F3 /* checkboxgreen.png */,
+				099B7B7B1951178A0076C8F3 /* checkboxgreen@2x.png */,
+			);
+			name = "Check button";
+			sourceTree = "<group>";
+		};
+		099B7B75195117330076C8F3 /* Note take */ = {
+			isa = PBXGroup;
+			children = (
+				099B7B86195117A20076C8F3 /* penicon.png */,
+				099B7B87195117A20076C8F3 /* penicon@2x.png */,
+			);
+			name = "Note take";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,8 +258,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				091489A9194CE20F008D2E38 /* Main.storyboard in Resources */,
-				091489AB194CE20F008D2E38 /* Images.xcassets in Resources */,
+				097665CA1951201300FA3B6E /* Main.storyboard in Resources */,
+				099B7B7D1951178A0076C8F3 /* checkboxgreen@2x.png in Resources */,
+				099B7B88195117A20076C8F3 /* penicon.png in Resources */,
+				099B7B89195117A20076C8F3 /* penicon@2x.png in Resources */,
+				099B7B84195117970076C8F3 /* photoicon.png in Resources */,
+				099B7B7C1951178A0076C8F3 /* checkboxgreen.png in Resources */,
+				097665D21951211500FA3B6E /* checkboxgrey@2x.png in Resources */,
+				099B7B8B19511DF50076C8F3 /* Images.xcassets in Resources */,
+				099B7B85195117970076C8F3 /* photoicon@2x.png in Resources */,
+				097665D11951211500FA3B6E /* checkboxgrey.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,7 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				091489A6194CE20F008D2E38 /* ViewController.swift in Sources */,
-				098F0480194E868B004FBE48 /* ViewControllerGet.swift in Sources */,
+				098F0480194E868B004FBE48 /* MemoryRetrievalViewController.swift in Sources */,
 				091489A4194CE20F008D2E38 /* AppDelegate.swift in Sources */,
 				09890D0B194F731800E2BC76 /* ViewControllerHome.swift in Sources */,
 			);

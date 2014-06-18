@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Qaj-Ko-eci">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="6jP-Mp-VvH">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
@@ -7,17 +7,17 @@
         <!--View Controller Home-->
         <scene sceneID="NmO-TM-UXq">
             <objects>
-                <viewController id="AKg-oi-125" customClass="ViewControllerHome" customModule="camerataker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" id="AKg-oi-125" customClass="ViewControllerHome" customModule="camerataker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="llW-wB-eau">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="22l-nJ-mXM">
-                                <rect key="frame" x="107" y="269" width="107" height="30"/>
+                                <rect key="frame" x="102" y="269" width="118" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Save a Memory"/>
+                                <state key="normal" title="Create Memories"/>
                                 <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="push" id="OzM-Ha-gH9"/>
+                                    <segue destination="vXZ-lx-hvc" kind="push" id="Zxa-1Q-fSH"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Memory Lane!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WGH-sN-hqD">
@@ -33,7 +33,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="mLW-Gv-DcV" kind="push" id="aKV-St-9OZ"/>
+                                    <segue destination="mLW-Gv-DcV" kind="modal" id="FHG-F3-DXb"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(a memory is waiting for you)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8HC-r8-dG6">
@@ -53,7 +53,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gYE-P8-Pxu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-103" y="387"/>
+            <point key="canvasLocation" x="623" y="284"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
@@ -63,74 +63,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IC3-Ji-eQD">
-                                <rect key="frame" x="115" y="221" width="91" height="30"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3qV-QY-Rnq">
+                                <rect key="frame" x="51" y="80" width="219" height="89"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Take A Photo">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="YQw-2k-0xC">
+                                <rect key="frame" x="87" y="144" width="146" height="198"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IC3-Ji-eQD" userLabel="Photo Button">
+                                <rect key="frame" x="90" y="172" width="141" height="117"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
+                                </accessibility>
+                                <state key="normal" backgroundImage="photoicon.png"/>
                                 <connections>
                                     <action selector="takePhoto:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="M8O-lb-u8h"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pfc-3C-SRR">
-                                <rect key="frame" x="90" y="386" width="141" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="za1-Hs-WeO">
+                                <rect key="frame" x="118" y="363" width="84" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Capture My Memory">
+                                <state key="normal" backgroundImage="checkboxgrey.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnCaptureMem:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="g8v-dE-e7j"/>
+                                    <action selector="btnCaptureMem:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="XP3-NN-nI0"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Describe The Memory" minimumFontSize="17" id="sA5-Rg-piE">
-                                <rect key="frame" x="20" y="81" width="280" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="z3X-Xz-fru"/>
-                                </connections>
-                            </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="YQw-2k-0xC">
-                                <rect key="frame" x="77" y="141" width="167" height="220"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
                     </view>
                     <navigationItem key="navigationItem" id="Kac-4t-Zie"/>
                     <connections>
+                        <outlet property="cameraIcon" destination="IC3-Ji-eQD" id="SgM-Wg-osU"/>
+                        <outlet property="checkButton" destination="za1-Hs-WeO" id="ful-dW-3AI"/>
                         <outlet property="imageView" destination="YQw-2k-0xC" id="Ac0-fN-IDn"/>
-                        <outlet property="textMem" destination="sA5-Rg-piE" id="lp6-X3-uBF"/>
+                        <outlet property="memoryText" destination="3qV-QY-Rnq" id="DO2-y8-pt5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="387"/>
+            <point key="canvasLocation" x="1027" y="284"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="FYa-LP-Ao6">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qaj-Ko-eci" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ICO-qV-R6r">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="AKg-oi-125" kind="relationship" relationship="rootViewController" id="W3e-Kd-PLG"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="L2a-cc-a6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-497" y="387"/>
-        </scene>
-        <!--View Controller Get-->
+        <!--Memory Retrieval View Controller-->
         <scene sceneID="25f-BP-d2Y">
             <objects>
-                <viewController id="mLW-Gv-DcV" customClass="ViewControllerGet" customModule="camerataker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mLW-Gv-DcV" customClass="MemoryRetrievalViewController" customModule="camerataker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p9c-S2-pwD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -204,6 +186,19 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" id="wJ7-Pl-cqt">
+                                <rect key="frame" x="0.0" y="21" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Discovery!" id="m0m-46-UAr">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="grl-c1-85F">
+                                            <connections>
+                                                <segue destination="6jP-Mp-VvH" kind="modal" id="4ed-b2-8NS"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -218,12 +213,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AV2-ak-cf3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="1020"/>
+            <point key="canvasLocation" x="179" y="1164"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="a6a-zs-MmA">
+            <objects>
+                <navigationController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="6jP-Mp-VvH" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <size key="freeformSize" width="320" height="568"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ohp-Ei-VNy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="AKg-oi-125" kind="relationship" relationship="rootViewController" id="XLy-EI-Y4C"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hgf-KK-SIb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="215" y="284"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="checkboxgrey.png" width="256" height="256"/>
+        <image name="photoicon.png" width="256" height="256"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

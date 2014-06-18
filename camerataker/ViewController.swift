@@ -9,8 +9,11 @@
 import UIKit
 import CoreLocation
 
+let CTCheckbuttonSelectedImage = "checkboxgreen"
+
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate , UITextFieldDelegate, CLLocationManagerDelegate {
     
+    @IBOutlet var checkButton : UIButton
     // init location manager and set coordinates to 0
     let locationManager = CLLocationManager()
     var myLong = 0.0
@@ -24,15 +27,32 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
+        
+//
+//        self.view!.backgroundColor = UIColor.lightGrayColor()
+//        var textView = UITextView(frame:CGRectMake(20.0, 80.0, 280.0, 150.0))
+//        textView.backgroundColor = UIColor.whiteColor()
+//        textView.editable = true
+//        textView.selectable = true
+//        textView.font = UIFont.systemFontOfSize(15)
+//        textView.text = "Tell us about your memory...."
+//        self.view.addSubview(textView)
+        
     }
     
+    override func viewDidAppear(animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        
+    }
     // standard
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    // tag textfield and image with variable names
-   
+    
+     // tag textfield and image with variable names
+    @IBOutlet var memoryText : UITextView = nil
     @IBOutlet var imageView : UIImageView = nil
     @IBOutlet var textMem : UITextField
     
@@ -49,7 +69,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // opens the camera when you git the "Take Photo" button until "Use Photo" is confirmed
     // the the camera closes
+    
+    @IBOutlet var cameraIcon : UIButton = nil
+    
+    
     @IBAction func takePhoto(sender : UIButton) {
+        
+        self.checkButton.setBackgroundImage(UIImage(named: CTCheckbuttonSelectedImage), forState: UIControlState.Normal|UIControlState.Selected|UIControlState.Highlighted)
+        self.checkButton.hidden = false;
         var image = UIImagePickerController()
         image.delegate = self
         image.sourceType = UIImagePickerControllerSourceType.Camera
@@ -64,27 +91,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerController(image: UIImagePickerController, didFinishPickingMediaWithInfo info: NSDictionary){
         
-        //println(image)
-        //println(info)
         var chosenImage: UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
         self.imageView.image = chosenImage
-        self.dismissModalViewControllerAnimated(true)
+        image.dismissModalViewControllerAnimated(true)
         
         //START TRYING TO POST OUR IMAGE
         var imageData: NSData = UIImageJPEGRepresentation(chosenImage, 0.1)
-        myImageData = "\(imageData)"
         
-//        for char in "\(imageData)" {
-//            if char != " " {
-//                imgAsString += char
-//            }
-//        }
-//        
-//        println(imgAsString)
-//        var img2 = imgAsString.substringFromIndex(1)
-//        img3 = img2.substringToIndex(countElements(img2) - 1)
-//        //THIS IS A
-//        println(img3)
+        myImageData = "\(imageData)"
+        // TODO: make network request to a shared new
        
     }
     
@@ -115,6 +130,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // submit memory button
     @IBAction func btnCaptureMem(sender : UIButton) {
         // println("Button was clicked")
+    
         var myText = textMem.text
         self.view.endEditing(true)
         textMem.text = ""
@@ -132,7 +148,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         var connection = NSURLConnection(request: request, delegate: self, startImmediately: false)
         connection.start()
-
+        
         
         // ALERT BUTTON
         let alert = UIAlertView()

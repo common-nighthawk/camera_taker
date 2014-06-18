@@ -17,10 +17,17 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
     var answerLat = ""
     var answerLong = ""
     var once = 1
+
+    
+    
+    @IBOutlet var imageIcon : UIImageView = nil
+    
+
+    
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        //var timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        
+      
     }
 
     override func didReceiveMemoryWarning() {
