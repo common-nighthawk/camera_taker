@@ -23,6 +23,21 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
+        
+ 
+//Sid -- what is this doing?
+        weak var weakSelf : ViewControllerGet? = self;
+        // lat,lon 41.889663, -87.637340
+//        println(location.coordinate.latitude)
+        var testLocation = CLLocation(latitude: 41.889663, longitude: -87.637340)
+        self.fetchImageWithCLLocation(testLocation, handler: {
+            (response: NSURLResponse!, image: UIImage!, error: NSError!) in
+            if (!error)
+            {
+                // Success! We got back an image...bind the image returned in the closure to the changeImage UIImageView
+                weakSelf!.changeImage.image = image
+            }
+        })
     }
     
     // standard
@@ -34,34 +49,136 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     @IBOutlet var changeLat : UILabel
     @IBOutlet var changeLong : UILabel
     @IBOutlet var changeURL : UILabel
-    @IBOutlet var changeImage : UIImageView = nil
+    @IBOutlet var changeImage : UIImageView // = nil (before sid)
     
-    var once = 1
-    func locationManager(manager:CLLocationManager!, didUpdateLocations locations:AnyObject[]) {
-        if once == 1 {
-            myLat = locations[0].coordinate.latitude
-            myLong = locations[0].coordinate.longitude
+    
+// FORMAT lat and long
+//    var once = 1
+//    func locationManager(manager:CLLocationManager!, didUpdateLocations locations:AnyObject[]) {
+//        if once == 1 {
+//            myLat = locations[0].coordinate.latitude
+//            myLong = locations[0].coordinate.longitude
+//
+//            var counterlat = 0
+//            var counterlong = 0
+//            
+//            for x in "\(myLat)" {
+//                if x == "." { counterlat = 1 }
+//                if counterlat < 8 { answerLat += x }
+//                counterlat += 1
+//            }
+//            for x in "\(myLong)" {
+//                if x == "." { counterlong = 1 }
+//                if counterlong < 8 { answerLong += x }
+//                counterlong += 1
+//            }
+//        }
+//        once += 1
+//    }
 
-            var counterlat = 0
-            var counterlong = 0
-            
-            for x in "\(myLat)" {
-                if x == "." { counterlat = 1 }
-                if counterlat < 8 { answerLat += x }
-                counterlat += 1
+// Sid
+    func locationManager(manager:CLLocationManager!, didUpdateLocations locations:CLLocation[])
+    {
+        // locations array will contain CLLocation objects in chronological order - Most recent first
+        // For our case, we shoud only need to get the first object in this array
+        
+        // Grab the latitude and long from this CLLocation object
+        // call method to fetch image from services (backend) using lat/long
+        // ex. - func fetchImageWithCLLocation(location: CLLocation, handler: {(image: UIImage, error: NSError)()}.....handler should be a closure
+        var mostRecentLocation = locations[0]
+        weak var weakSelf : ViewControllerGet? = self
+   // ON BUTTON CLICK....
+        // the variable 'handler' is a closure that gets executed once a response comes back from the backend
+        self.fetchImageWithCLLocation(mostRecentLocation, handler: {
+            (response: NSURLResponse!, image: UIImage!, error: NSError!) in
+            if (error)
+            {
+                // Success! We got back an image...bind the image returned in the closure to the changeImage UIImageView
+                weakSelf!.changeImage.image = image
             }
-            for x in "\(myLong)" {
-                if x == "." { counterlong = 1 }
-                if counterlong < 8 { answerLong += x }
-                counterlong += 1
-            }
+        })
+    }
+//
+    
+    
+    func fetchImageWithCLLocation(location: CLLocation?, handler: ((NSURLResponse!, UIImage!, NSError!) -> Void)!)
+    {
+        println("--- fetch Image with Location")
+        //TODO: fetch memory text with CLLOcation.  change method need.  need to return both text and image.
+        // Create NSURLRequest object with correct properties set (base url, endpoint, url parameters, any post data, headers, etc.)
+        // Make asynchronous call using NSURLConnection using sendAsynchronousRequest (use NSOperationQueue.mainOperationQueue as the operation queue for method, pass handler as the last parameter of the method call)
+        if (!location)
+        {
+            return;
         }
-        once += 1
+        
+        var request = NSMutableURLRequest();
+        request.URL = NSURL(string: self.parameterizedURLFromLocation(location!, baseURL: "http://whispering-earth-2684.herokuapp.com/memories/"))
+        request.HTTPMethod = "GET"
+    // Daniel -- may cause problems
+        request.setValue("text/xml", forHTTPHeaderField: "X-Requested-With")
+        // TODO: Figure out what's in the header for the request
+        
+        NSURLConnection.sendAsynchronousRequest(request,
+            queue: NSOperationQueue.mainQueue(),
+            completionHandler:{
+                (response: NSURLResponse!, data: NSData!, error: NSError!) in
+                var jsonResult: NSDictionary? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as? NSDictionary
+                if (!jsonResult)
+                {
+                    return;
+                }
+                // make same if statement for text
+                // if there is an image URL, write the method to fetch it
+                
+                var urlDictionary : NSDictionary = jsonResult!["image"] as NSDictionary
+                var urlToImage : AnyObject? = urlDictionary["url"] as AnyObject?
+                println(urlDictionary)
+                println(urlToImage)
+                weak var weakSelf : ViewControllerGet? = self
+                if (urlToImage)
+                {
+                    var kMaybeThisIsAnImage : String = urlToImage! as String
+                    println("kMaybeThisIsAnImage: \(kMaybeThisIsAnImage)")
+                    
+                    weakSelf!.fetchImageAtURL(kMaybeThisIsAnImage, handler: {
+                        (response: NSURLResponse!, image: UIImage!, error: NSError!) in
+                        if handler
+                        {
+                            handler(response, image, error)
+                        }
+                        })
+                }
+            })
+    }
+
+    func fetchImageAtURL(url: String, handler: ((NSURLResponse!, UIImage!, NSError!) -> Void)!)
+    {
+        println("fuck yeah")
+        var request = NSMutableURLRequest();
+        request.URL = NSURL(string: url)
+        request.HTTPMethod = "GET"
+        NSURLConnection.sendAsynchronousRequest(request,
+            queue: NSOperationQueue.mainQueue(),
+            completionHandler:{
+                (response: NSURLResponse!, data: NSData!, error: NSError!) in
+                var img : UIImage = UIImage(data: data!)
+                if handler
+                {
+                    handler(response, img, error)
+                }
+            })
+    }
+    
+    func parameterizedURLFromLocation(location: CLLocation, baseURL: String) -> String
+    {
+        return  "\(baseURL)?latitude=\(location.coordinate.latitude)&longitude=\(location.coordinate.longitude)"
     }
 
     
-    
+// Manually retrieve memory
     @IBAction func getMemory(sender : UIButton) {
+        
         var url = NSURL(string: "http://whispering-earth-2684.herokuapp.com/memories/?latitude=\(answerLat)&longitude=\(answerLong)")
         println(url)
         
