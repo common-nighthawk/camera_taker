@@ -45,6 +45,9 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
                 }
             }
         })
+        if self.changeText.text == "" {
+            self.changeText.text = "Keep walking around!"
+        }
     }
     
     func locationManager(manager:CLLocationManager!, didUpdateLocations locations:CLLocation[])
