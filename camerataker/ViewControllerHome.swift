@@ -19,6 +19,7 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
     // after the view loads, start getting location
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController.navigationBar.hidden = true;
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
@@ -50,6 +51,7 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
     {
         var mostRecentLocation = locations[0]
     }
+  
     
     
     // standard

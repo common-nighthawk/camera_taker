@@ -20,6 +20,7 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     // after the view loads, start getting location
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController.navigationBar.hidden = false;
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()

@@ -15,6 +15,13 @@
 		0982981C194D41D000BB798F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0982981B194D41D000BB798F /* CoreLocation.framework */; };
 		09890D0B194F731800E2BC76 /* ViewControllerHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09890D0A194F731800E2BC76 /* ViewControllerHome.swift */; };
 		098F0480194E868B004FBE48 /* ViewControllerGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F047F194E868B004FBE48 /* ViewControllerGet.swift */; };
+		098F64F019522727008BA181 /* checkboxgreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 098F64EE19522727008BA181 /* checkboxgreen.png */; };
+		098F64F119522727008BA181 /* checkboxgreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 098F64EF19522727008BA181 /* checkboxgreen@2x.png */; };
+		098F64F419522736008BA181 /* photoicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 098F64F219522736008BA181 /* photoicon.png */; };
+		098F64F519522736008BA181 /* photoicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 098F64F319522736008BA181 /* photoicon@2x.png */; };
+		098F64F819522744008BA181 /* checkboxgrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 098F64F619522744008BA181 /* checkboxgrey.png */; };
+		098F64F919522744008BA181 /* checkboxgrey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 098F64F719522744008BA181 /* checkboxgrey@2x.png */; };
+		098F64FB1952275B008BA181 /* memorylane.png in Resources */ = {isa = PBXBuildFile; fileRef = 098F64FA1952275B008BA181 /* memorylane.png */; };
 		59B7D7FC6F4F422B81341ACF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22DD41AECA8B4A1C987F198A /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +49,13 @@
 		09890D0A194F731800E2BC76 /* ViewControllerHome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerHome.swift; sourceTree = "<group>"; };
 		098F047E194D63D9004FBE48 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		098F047F194E868B004FBE48 /* ViewControllerGet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewControllerGet.swift; path = ../ViewControllerGet.swift; sourceTree = "<group>"; };
+		098F64EE19522727008BA181 /* checkboxgreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxgreen.png; sourceTree = "<group>"; };
+		098F64EF19522727008BA181 /* checkboxgreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkboxgreen@2x.png"; sourceTree = "<group>"; };
+		098F64F219522736008BA181 /* photoicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photoicon.png; sourceTree = "<group>"; };
+		098F64F319522736008BA181 /* photoicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photoicon@2x.png"; sourceTree = "<group>"; };
+		098F64F619522744008BA181 /* checkboxgrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxgrey.png; sourceTree = "<group>"; };
+		098F64F719522744008BA181 /* checkboxgrey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkboxgrey@2x.png"; sourceTree = "<group>"; };
+		098F64FA1952275B008BA181 /* memorylane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = memorylane.png; sourceTree = "<group>"; };
 		09AEB137195114DD00BC1600 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		09D725B8195117CA00A0BBFA /* camerataker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "camerataker-Bridging-Header.h"; sourceTree = "<group>"; };
 		22DD41AECA8B4A1C987F198A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +107,7 @@
 		091489A0194CE20F008D2E38 /* camerataker */ = {
 			isa = PBXGroup;
 			children = (
+				098F64E8195226AC008BA181 /* Assets */,
 				091489A3194CE20F008D2E38 /* AppDelegate.swift */,
 				091489A5194CE20F008D2E38 /* ViewController.swift */,
 				098F047F194E868B004FBE48 /* ViewControllerGet.swift */,
@@ -129,6 +144,52 @@
 				091489B5194CE20F008D2E38 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		098F64E8195226AC008BA181 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				098F64FA1952275B008BA181 /* memorylane.png */,
+				098F64EA195226C3008BA181 /* Photo Icon */,
+				098F64E9195226B4008BA181 /* Checkmark Icons */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		098F64E9195226B4008BA181 /* Checkmark Icons */ = {
+			isa = PBXGroup;
+			children = (
+				098F64ED195226F6008BA181 /* Checkmark Disabled */,
+				098F64EC195226ED008BA181 /* Checkmark Rest */,
+			);
+			name = "Checkmark Icons";
+			sourceTree = "<group>";
+		};
+		098F64EA195226C3008BA181 /* Photo Icon */ = {
+			isa = PBXGroup;
+			children = (
+				098F64F219522736008BA181 /* photoicon.png */,
+				098F64F319522736008BA181 /* photoicon@2x.png */,
+			);
+			name = "Photo Icon";
+			sourceTree = "<group>";
+		};
+		098F64EC195226ED008BA181 /* Checkmark Rest */ = {
+			isa = PBXGroup;
+			children = (
+				098F64EE19522727008BA181 /* checkboxgreen.png */,
+				098F64EF19522727008BA181 /* checkboxgreen@2x.png */,
+			);
+			name = "Checkmark Rest";
+			sourceTree = "<group>";
+		};
+		098F64ED195226F6008BA181 /* Checkmark Disabled */ = {
+			isa = PBXGroup;
+			children = (
+				098F64F619522744008BA181 /* checkboxgrey.png */,
+				098F64F719522744008BA181 /* checkboxgrey@2x.png */,
+			);
+			name = "Checkmark Disabled";
 			sourceTree = "<group>";
 		};
 		EDAF98F4D0B44DE78994A09C /* Frameworks */ = {
@@ -222,7 +283,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				098F64FB1952275B008BA181 /* memorylane.png in Resources */,
 				091489A9194CE20F008D2E38 /* Main.storyboard in Resources */,
+				098F64F419522736008BA181 /* photoicon.png in Resources */,
+				098F64F819522744008BA181 /* checkboxgrey.png in Resources */,
+				098F64F519522736008BA181 /* photoicon@2x.png in Resources */,
+				098F64F119522727008BA181 /* checkboxgreen@2x.png in Resources */,
+				098F64F019522727008BA181 /* checkboxgreen.png in Resources */,
+				098F64F919522744008BA181 /* checkboxgrey@2x.png in Resources */,
 				091489AB194CE20F008D2E38 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

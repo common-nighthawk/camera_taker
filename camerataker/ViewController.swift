@@ -24,9 +24,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // after the view loads, start getting location
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController.navigationBar.hidden = false;
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
+        
+        
+//            [self setView:[[[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease]];
+//            [[self view] setBackgroundColor:[UIColor colorWithRed:0.0 green:.34 blue:.74 alpha:1]];
+//
+
+//            
+//            // For the border and rounded corners
+//            [[textViewStatus layer] setBorderColor:[[UIColor whiteColor] CGColor]];
+//            [[textViewStatus layer] setBorderWidth:2.3];
+//            [[textViewStatus layer] setCornerRadius:15];
+//            [textViewStatus setClipsToBounds: YES];
+//            
+//            [textViewStatus setText:@"iOSDeveloperTips.com"];
+//            
+//            [[self view] addSubview:textViewStatus];
+//        
+        
+   UITextView.layerClass()
+        
+        
+        
+        
     }
     
 
@@ -45,7 +69,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // tag textfield and image with variable names
     @IBOutlet var imageView : UIImageView = nil
-    @IBOutlet var textMem : UITextField
+    @IBOutlet var textMem : UITextView = nil
     
     
     override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
