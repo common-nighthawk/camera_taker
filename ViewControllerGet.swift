@@ -77,14 +77,12 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
 //    }
     
     
-    func fetchImageWithCLLocation(location: CLLocation?, handler: ((NSURLResponse!, UIImage!, NSError!) -> Void)!)
-    {
+    func fetchImageWithCLLocation(location: CLLocation?, handler: ((NSURLResponse!, UIImage!, NSError!) -> Void)!) {
         println("--- fetch Image with Location")
         //TODO: fetch memory text with CLLOcation.  change method need.  need to return both text and image.
         // Create NSURLRequest object with correct properties set (base url, endpoint, url parameters, any post data, headers, etc.)
         // Make asynchronous call using NSURLConnection using sendAsynchronousRequest (use NSOperationQueue.mainOperationQueue as the operation queue for method, pass handler as the last parameter of the method call)
-        if (!location)
-        {
+        if (!location) {
             return;
         }
         
@@ -98,8 +96,7 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
             completionHandler:{
                 (response: NSURLResponse!, data: NSData!, error: NSError!) in
                 var jsonResult: NSDictionary? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as? NSDictionary
-                if (!jsonResult)
-                {
+                if (!jsonResult) {
                     return;
                 }
    
@@ -118,19 +115,17 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
                     println("kMaybeThisIsAnImage: \(kMaybeThisIsAnImage)")
                     weakSelf!.fetchImageAtURL(kMaybeThisIsAnImage, handler: {
                         (response: NSURLResponse!, image: UIImage!, error: NSError!) in
-                        if handler
-                        {
+                        if handler {
                             handler(response, image, error)
                         }
-                        })
+                    })
                 } else {
-
-                if self.changeText.text == "" {
-                    self.changeText.text = "Keep walking around!"
+                    if self.changeText.text == "" {
+                        self.changeText.text = "Keep walking around!"
+                    }
                 }
-                }
-        })
-    }
+            })
+        }
 
     func fetchImageAtURL(url: String, handler: ((NSURLResponse!, UIImage!, NSError!) -> Void)!) {
         var request = NSMutableURLRequest();
@@ -141,15 +136,13 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
             completionHandler:{
                 (response: NSURLResponse!, data: NSData!, error: NSError!) in
                 var img : UIImage = UIImage(data: data!)
-                if handler
-                {
+                if handler {
                     handler(response, img, error)
                 }
             })
     }
     
-    func parameterizedURLFromLocation(location: CLLocation, baseURL: String) -> String
-    {
+    func parameterizedURLFromLocation(location: CLLocation, baseURL: String) -> String {
         println("\(baseURL)?latitude=\(location.coordinate.latitude)&longitude=\(location.coordinate.longitude)")
         return  "\(baseURL)?latitude=\(location.coordinate.latitude)&longitude=\(location.coordinate.longitude)"
     }

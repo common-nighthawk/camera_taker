@@ -32,18 +32,16 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
         var testLocation = CLLocation(latitude: myLat, longitude: myLong)
         self.fetchImageWithCLLocation(testLocation, handler: {
             (response: NSURLResponse!, image: UIImage!, error: NSError!) in
-            if (!error)
-            {
+            if (!error) {
                 // Success! We got back an image...bind the image returned in the closure to the changeImage UIImageView
                 if self.textHacker != "" {
                     self.changeMemWait.text = "(a memory is waiting for you)"
                 }
             }
-            })
+        })
     }
     
-    func locationManager(manager:CLLocationManager!, didUpdateLocations locations:CLLocation[])
-    {
+    func locationManager(manager:CLLocationManager!, didUpdateLocations locations:CLLocation[]) {
         var mostRecentLocation = locations[0]
     }
 
@@ -77,10 +75,8 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
     //    }
     
     
-    func fetchImageWithCLLocation(location: CLLocation?, handler: ((NSURLResponse!, UIImage!, NSError!) -> Void)!)
-    {
-        if (!location)
-        {
+    func fetchImageWithCLLocation(location: CLLocation?, handler: ((NSURLResponse!, UIImage!, NSError!) -> Void)!) {
+        if (!location) {
             return;
         }
         var request = NSMutableURLRequest();
@@ -93,8 +89,7 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
             completionHandler:{
                 (response: NSURLResponse!, data: NSData!, error: NSError!) in
                 var jsonResult: NSDictionary? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as? NSDictionary
-                if (!jsonResult)
-                {
+                if (!jsonResult) {
                     return;
                 }
                 
@@ -104,21 +99,19 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
                 self.textHacker = textDictionary
                 
                 weak var weakSelf : ViewControllerHome? = self
-                if (urlToImage)
-                {
+                if (urlToImage) {
                     var kMaybeThisIsAnImage : String = urlToImage! as String
                     println("kMaybeThisIsAnImage: \(kMaybeThisIsAnImage)")
                     
                     weakSelf!.fetchImageAtURL(kMaybeThisIsAnImage, handler: {
                         (response: NSURLResponse!, image: UIImage!, error: NSError!) in
-                        if handler
-                        {
+                        if handler {
                             handler(response, image, error)
                         }
-                        })
+                    })
                 }
             })
-    }
+        }
     
     func fetchImageAtURL(url: String, handler: ((NSURLResponse!, UIImage!, NSError!) -> Void)!) {
         var request = NSMutableURLRequest();
@@ -129,15 +122,14 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
             completionHandler:{
                 (response: NSURLResponse!, data: NSData!, error: NSError!) in
                 var img : UIImage = UIImage(data: data!)
-                if handler
-                {
+                if handler {
                     handler(response, img, error)
                 }
             })
-    }
+        }
     
-    func parameterizedURLFromLocation(location: CLLocation, baseURL: String) -> String
-    {
+    func parameterizedURLFromLocation(location: CLLocation, baseURL: String) -> String {
         return  "\(baseURL)?latitude=\(location.coordinate.latitude)&longitude=\(location.coordinate.longitude)"
     }
+    
 }

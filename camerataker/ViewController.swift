@@ -96,7 +96,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     //Initialize camera data string
-    func imagePickerController(image: UIImagePickerController, didFinishPickingMediaWithInfo info: NSDictionary){
+    func imagePickerController(image: UIImagePickerController, didFinishPickingMediaWithInfo info: NSDictionary) {
         var chosenImage: UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
         self.imageView.image = chosenImage
         self.dismissModalViewControllerAnimated(true)
