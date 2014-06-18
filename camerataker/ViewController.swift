@@ -27,7 +27,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
-        
     }
     
 
@@ -74,15 +73,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     //Initialize camera data string
-    
-    
     func imagePickerController(image: UIImagePickerController, didFinishPickingMediaWithInfo info: NSDictionary){
         var chosenImage: UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
         self.imageView.image = chosenImage
         self.dismissModalViewControllerAnimated(true)
         var imageData: NSData = UIImageJPEGRepresentation(chosenImage, 0.1)
-        
-       
     }
     
     // sets the actual long and lat values to the variables and convert to strings with 6 deceimal places
@@ -114,7 +109,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         var myText = textMem.text
         self.view.endEditing(true)
         
-        
         var url = "http://whispering-earth-2684.herokuapp.com/memories"
         
         let manager = AFHTTPRequestOperationManager()
@@ -141,14 +135,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 failAlert.show()
                 failAlert.delegate = nil
                 
-                
-                
                 println(response)})
         
         textMem.text = ""
         imageView.image = nil
-        
-    
     }
 }
 

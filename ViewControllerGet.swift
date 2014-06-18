@@ -13,16 +13,12 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     
     let locationManager = CLLocationManager()
     var textHacker = ""
-//    var myLong = 0.0
-//    var myLat = 0.0
-//    var answerLat = ""
-//    var answerLong = ""
     
     @IBOutlet var changeText : UILabel
     @IBOutlet var changeLat : UILabel
     @IBOutlet var changeLong : UILabel
     @IBOutlet var changeURL : UILabel
-    @IBOutlet var changeImage : UIImageView // = nil (before sid)
+    @IBOutlet var changeImage : UIImageView
 
     // after the view loads, start getting location
     override func viewDidLoad() {
@@ -61,32 +57,6 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     }
     
     
-// FORMAT lat and long
-//    var once = 1
-//    func locationManager(manager:CLLocationManager!, didUpdateLocations locations:AnyObject[]) {
-//        if once == 1 {
-//            myLat = locations[0].coordinate.latitude
-//            myLong = locations[0].coordinate.longitude
-//
-//            var counterlat = 0
-//            var counterlong = 0
-//            
-//            for x in "\(myLat)" {
-//                if x == "." { counterlat = 1 }
-//                if counterlat < 8 { answerLat += x }
-//                counterlat += 1
-//            }
-//            for x in "\(myLong)" {
-//                if x == "." { counterlong = 1 }
-//                if counterlong < 8 { answerLong += x }
-//                counterlong += 1
-//            }
-//        }
-//        once += 1
-//    }
-
-    
-//    
 // SID SET THIS UP FOR OUR LOGIC TO CHECK ONCE EVERY CHANGE IN X FEET
 //    func locationManager(manager:CLLocationManager!, didUpdateLocations locations:CLLocation[])
 //    {
@@ -125,9 +95,7 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
         var request = NSMutableURLRequest();
         request.URL = NSURL(string: self.parameterizedURLFromLocation(location!, baseURL: "http://whispering-earth-2684.herokuapp.com/memories/"))
         request.HTTPMethod = "GET"
-    // Daniel -- may cause problems
         request.setValue("text/xml", forHTTPHeaderField: "X-Requested-With")
-        // TODO: Figure out what's in the header for the request
         
         NSURLConnection.sendAsynchronousRequest(request,
             queue: NSOperationQueue.mainQueue(),
@@ -138,9 +106,7 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
                 {
                     return;
                 }
-                // make same if statement for text
-                // if there is an image URL, write the method to fetch it
-                
+   
                 var urlDictionary : NSDictionary = jsonResult!["image"] as NSDictionary
                 var urlToImage : AnyObject? = urlDictionary["url"] as AnyObject?
                 var textDictionary : NSString = jsonResult!["text"] as NSString
@@ -161,14 +127,13 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
                         if handler
                         {
                             handler(response, image, error)
-                        }
-                        })
-                }
-            })
+                    }
+                })
+            }
+        })
     }
 
-    func fetchImageAtURL(url: String, handler: ((NSURLResponse!, UIImage!, NSError!) -> Void)!)
-    {
+    func fetchImageAtURL(url: String, handler: ((NSURLResponse!, UIImage!, NSError!) -> Void)!) {
         var request = NSMutableURLRequest();
         request.URL = NSURL(string: url)
         request.HTTPMethod = "GET"
@@ -189,47 +154,4 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
         println("\(baseURL)?latitude=\(location.coordinate.latitude)&longitude=\(location.coordinate.longitude)")
         return  "\(baseURL)?latitude=\(location.coordinate.latitude)&longitude=\(location.coordinate.longitude)"
     }
-
-    
-// Manually retrieve memory.  WE ARE REMOVING THIS BUTTON.  NEED TO STEAL LOGIC FOR IF NO MEMORY
-//    @IBAction func getMemory(sender : UIButton) {
-//        
-//        var url = NSURL(string: "http://whispering-earth-2684.herokuapp.com/memories/?latitude=\(answerLat)&longitude=\(answerLong)")
-//        println(url)
-//        
-//        var request = NSMutableURLRequest(URL: url)
-//        request.HTTPMethod = "GET"
-//        request.setValue("text/xml", forHTTPHeaderField: "X-Requested-With")
-//        
-//        var connection = NSURLConnection(request: request, delegate: self, startImmediately: false)
-//        connection.start()
-//    }
-//    
-//    func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
-//        var getText = ""
-//        var getUrl = ""
-//        
-//        if data.length == 4 {
-//            getText = "Just keep walking"
-//            getUrl = "http://justsomething.co/wp-content/uploads/2014/01/hilarious-alpaca-hairstyles-12.jpg"
-//        }
-//        else {
-//            var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
-//            var myText = jsonResult["text"]
-//            var myUrl = jsonResult["image"]
-//            getText = "\(myText)"
-//            getUrl = "\(myUrl)"
-//        }
-//            var urlString: NSString = getUrl as NSString
-//            var imgURL: NSURL = NSURL(string: urlString)
-//            var imgData: NSData = NSData(contentsOfURL: imgURL)
-//        
-//            changeLat.text = answerLat        //REMOVE.  JUST FOR TESTING
-//            changeLong.text = answerLong      //REMOVE JUST FOR TESTING
-//            changeText.text = "\(getText)"
-//            changeURL.text = "\(getUrl)"
-//            changeImage.image = UIImage(data: imgData)
-//    }
-    
-    
 }
