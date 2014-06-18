@@ -12,10 +12,17 @@ import CoreLocation
 class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate , UITextFieldDelegate, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
-    var myLong = 0.0
-    var myLat = 0.0
-    var answerLat = ""
-    var answerLong = ""
+    var textHacker = ""
+//    var myLong = 0.0
+//    var myLat = 0.0
+//    var answerLat = ""
+//    var answerLong = ""
+    
+    @IBOutlet var changeText : UILabel
+    @IBOutlet var changeLat : UILabel
+    @IBOutlet var changeLong : UILabel
+    @IBOutlet var changeURL : UILabel
+    @IBOutlet var changeImage : UIImageView // = nil (before sid)
 
     // after the view loads, start getting location
     override func viewDidLoad() {
@@ -24,8 +31,6 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         
- 
-//Sid -- what is this doing?
         weak var weakSelf : ViewControllerGet? = self;
         //var myLat = 41.889663
         //var myLong = -87.637340
@@ -39,6 +44,7 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
             {
                 // Success! We got back an image...bind the image returned in the closure to the changeImage UIImageView
                 weakSelf!.changeImage.image = image
+                self.changeText.text = self.textHacker
             }
         })
     }
@@ -53,12 +59,6 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    @IBOutlet var changeText : UILabel
-    @IBOutlet var changeLat : UILabel
-    @IBOutlet var changeLong : UILabel
-    @IBOutlet var changeURL : UILabel
-    @IBOutlet var changeImage : UIImageView // = nil (before sid)
     
     
 // FORMAT lat and long
@@ -143,8 +143,13 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
                 
                 var urlDictionary : NSDictionary = jsonResult!["image"] as NSDictionary
                 var urlToImage : AnyObject? = urlDictionary["url"] as AnyObject?
+                var textDictionary : NSString = jsonResult!["text"] as NSString
+                self.textHacker = textDictionary
+
                 println(urlDictionary)
                 println(urlToImage)
+                println(textDictionary)
+                
                 weak var weakSelf : ViewControllerGet? = self
                 if (urlToImage)
                 {
@@ -181,6 +186,7 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     
     func parameterizedURLFromLocation(location: CLLocation, baseURL: String) -> String
     {
+        println("\(baseURL)?latitude=\(location.coordinate.latitude)&longitude=\(location.coordinate.longitude)")
         return  "\(baseURL)?latitude=\(location.coordinate.latitude)&longitude=\(location.coordinate.longitude)"
     }
 
