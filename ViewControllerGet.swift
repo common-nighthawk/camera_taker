@@ -62,7 +62,7 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     
     
     @IBAction func getMemory(sender : UIButton) {
-        var url = NSURL(string: "http://quiet-ravine-8717.herokuapp.com/memories/?latitude=\(answerLat)&longitude=\(answerLong)")
+        var url = NSURL(string: "http://whispering-earth-2684.herokuapp.com/memories/?latitude=\(answerLat)&longitude=\(answerLong)")
         println(url)
         
         var request = NSMutableURLRequest(URL: url)

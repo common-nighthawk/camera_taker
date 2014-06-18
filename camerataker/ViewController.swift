@@ -118,29 +118,31 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         var myText = textMem.text
         self.view.endEditing(true)
         textMem.text = ""
+        
+        
+        var url = "http://whispering-earth-2684.herokuapp.com/memories"
+        
+        let manager = AFHTTPRequestOperationManager()
+        let params = ["text":myText, "latitude":answerLat, "longitude":answerLong]
+        
+        manager.POST(url, parameters: params,
+            constructingBodyWithBlock: {
+                [weak self](formData) -> Void in
+                formData.appendPartWithFileData(UIImageJPEGRepresentation(self?.imageView?.image, 0.9), name: "image", fileName: "picture.jpg", mimeType: "image/jpeg")
+            },
+            success: {(operation, response) -> Void in
+                let alert = UIAlertView()
+                alert.title = "Memory Created!"
+                alert.message = "You have shared a memory for the world to experience."
+                alert.addButtonWithTitle("the world ♥ you")
+                alert.show()
+                alert.delegate = nil
+            },
+            failure: {(operation, response) -> Void in println(response)})
+
         imageView.image = nil
-
-        var postString = NSString(format: "text=\(myText)&latitude=\(answerLat)&longitude=\(answerLong)&imagestring=\(myImageData)")
-        var postData = postString.dataUsingEncoding(NSUTF8StringEncoding)
-        var url = NSURL(string: "http://quiet-ravine-8717.herokuapp.com/memories")
         
-        // creating post request
-        var request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        request.HTTPBody = postData
-        request.setValue("text/xml", forHTTPHeaderField: "X-Requested-With")
-        
-        var connection = NSURLConnection(request: request, delegate: self, startImmediately: false)
-        connection.start()
-
-        
-        // ALERT BUTTON
-        let alert = UIAlertView()
-        alert.title = "Memory Created!"
-        alert.message = "You have shared a memory for the world to experience."
-        alert.addButtonWithTitle("the world ♥ you")
-        alert.show()
-        alert.delegate = nil
+    
     }
 }
 
