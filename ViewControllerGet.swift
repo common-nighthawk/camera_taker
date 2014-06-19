@@ -23,11 +23,10 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     
     
     // after the view loads, start getting location
-    override func viewDidLoad() {
-        
+    override func viewDidLoad() {        
         changeTextView.editable = false
-        changeTextView.layer.borderWidth = 1.0
-        changeTextView.layer.cornerRadius = 8.0
+        changeTextView.layer.borderWidth = 0.6
+        changeTextView.layer.cornerRadius = 6.0
         changeTextView.scrollEnabled = true
         
         
@@ -42,25 +41,26 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
         var myLong = locationManager.location.coordinate.longitude
         
         
-        var counterlat = 0
-        var counterlong = 0
-        var answerLat = ""
-        var answerLong = ""
-        
-        for x in "\(myLat)" {
-            if x == "." { counterlat = 1 }
-            if counterlat < 8 { answerLat += x }
-            counterlat += 1
-        }
-        for x in "\(myLong)" {
-            if x == "." { counterlong = 1 }
-            if counterlong < 8 { answerLong += x }
-            counterlong += 1
-        }
-        
-        self.youLatDisplay.text = answerLat
-        self.youLongDisplay.text = answerLong
-        self.changeTextView.text = "Bads news!--there's no memory within a block of your current location.  \n\nCreate a memory here so that someone else can stumble upon it.  And keep exploring your neightborhood and checking back!"
+//        var counterlat = 0
+//        var counterlong = 0
+//        var answerLat = ""
+//        var answerLong = ""
+//        
+//        for x in "\(myLat)" {
+//            if x == "." { counterlat = 1 }
+//            if counterlat < 8 { answerLat += x }
+//            counterlat += 1
+//        }
+//        for x in "\(myLong)" {
+//            if x == "." { counterlong = 1 }
+//            if counterlong < 8 { answerLong += x }
+//            counterlong += 1
+//        }
+//        
+//        self.youLatDisplay.text = answerLat
+//        self.youLongDisplay.text = answerLong
+//        self.changeTextView.text = "There's no memory here \n\nCreate one in this spot for the next person to stumble on.  \n\nAnd keep walking around to find one in your neighborhood."
+        println("test1")
 
         var testLocation = CLLocation(latitude: myLat, longitude: myLong)
         self.fetchImageWithCLLocation(testLocation, handler: {
@@ -74,6 +74,7 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
                 
             }
         })
+        println("test2")
     }
     
     func locationManager(manager:CLLocationManager!, didUpdateLocations locations:CLLocation[])
@@ -122,7 +123,7 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
         }
         
         var request = NSMutableURLRequest();
-        request.URL = NSURL(string: self.parameterizedURLFromLocation(location!, baseURL: "http://whispering-earth-2684.herokuapp.com/memories/"))
+        request.URL = NSURL(string: self.parameterizedURLFromLocation(location!, baseURL: "http://nameless-reaches-8687.herokuapp.com/memories/"))
         request.HTTPMethod = "GET"
         request.setValue("text/xml", forHTTPHeaderField: "X-Requested-With")
         

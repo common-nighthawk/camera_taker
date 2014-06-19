@@ -14,7 +14,6 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
 
     @IBOutlet var changeMemImage : UIImageView
     
-    
     let locationManager = CLLocationManager()
     var textHacker = ""
     
@@ -55,36 +54,14 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
     }
     
     
-    // SID SET THIS UP FOR OUR LOGIC TO CHECK ONCE EVERY CHANGE IN X FEET
-    //    func locationManager(manager:CLLocationManager!, didUpdateLocations locations:CLLocation[])
-    //    {
-    //        // locations array will contain CLLocation objects in chronological order - Most recent first
-    //        // For our case, we shoud only need to get the first object in this array
-    //
-    //        // Grab the latitude and long from this CLLocation object
-    //        // call method to fetch image from services (backend) using lat/long
-    //        // ex. - func fetchImageWithCLLocation(location: CLLocation, handler: {(image: UIImage, error: NSError)()}.....handler should be a closure
-    //        var mostRecentLocation = locations[0]
-    //        weak var weakSelf : ViewControllerGet? = self
-    //   // ON BUTTON CLICK....
-    //        // the variable 'handler' is a closure that gets executed once a response comes back from the backend
-    //        self.fetchImageWithCLLocation(mostRecentLocation, handler: {
-    //            (response: NSURLResponse!, image: UIImage!, error: NSError!) in
-    //            if (error)
-    //            {
-    //                // Success! We got back an image...bind the image returned in the closure to the changeImage UIImageView
-    //                weakSelf!.changeImage.image = image
-    //            }
-    //        })
-    //    }
-    
+
     
     func fetchImageWithCLLocation(location: CLLocation?, handler: ((NSURLResponse!, UIImage!, NSError!) -> Void)!) {
         if (!location) {
             return;
         }
         var request = NSMutableURLRequest();
-        request.URL = NSURL(string: self.parameterizedURLFromLocation(location!, baseURL: "http://whispering-earth-2684.herokuapp.com/memories/"))
+        request.URL = NSURL(string: self.parameterizedURLFromLocation(location!, baseURL: "http://nameless-reaches-8687.herokuapp.com/memories/"))
         request.HTTPMethod = "GET"
         request.setValue("text/xml", forHTTPHeaderField: "X-Requested-With")
         
@@ -133,6 +110,7 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
         }
     
     func parameterizedURLFromLocation(location: CLLocation, baseURL: String) -> String {
+        println("\(baseURL)?latitude=\(location.coordinate.latitude)&longitude=\(location.coordinate.longitude)")
         return  "\(baseURL)?latitude=\(location.coordinate.latitude)&longitude=\(location.coordinate.longitude)"
     }
     

@@ -29,8 +29,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         
-        textMem.layer.borderWidth = 1.0
-        textMem.layer.cornerRadius = 8.0
+        textMem.layer.borderWidth = 0.6
+        textMem.layer.cornerRadius = 6.0
         textMem.scrollEnabled = true
 //
         
@@ -141,7 +141,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             var myText = textMem.text
             self.view.endEditing(true)
             
-            var url = "http://whispering-earth-2684.herokuapp.com/memories"
+            var url = "http://nameless-reaches-8687.herokuapp.com/memories"
             
             let manager = AFHTTPRequestOperationManager()
             let params = ["text":myText, "latitude":answerLat, "longitude":answerLong]
@@ -169,7 +169,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             imageView.image = nil
             }
         else {
-            changeError.text="You must enter both text and an image to submit"
+            changeError.text="Please enter both text and an image to submit"
         }
     }
 }
