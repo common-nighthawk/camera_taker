@@ -32,6 +32,8 @@
 		098F651319527326008BA181 /* checkboxblack.png in Resources */ = {isa = PBXBuildFile; fileRef = 098F651119527326008BA181 /* checkboxblack.png */; };
 		098F651419527326008BA181 /* checkboxblack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 098F651219527326008BA181 /* checkboxblack@2x.png */; };
 		59B7D7FC6F4F422B81341ACF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22DD41AECA8B4A1C987F198A /* libPods.a */; };
+		F1B587F219533A7500BC1FF6 /* plusone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1B587F119533A7500BC1FF6 /* plusone@2x.png */; };
+		F1B587F419533B3E00BC1FF6 /* plusone.png in Resources */ = {isa = PBXBuildFile; fileRef = F1B587F319533B3E00BC1FF6 /* plusone.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		09D725B8195117CA00A0BBFA /* camerataker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "camerataker-Bridging-Header.h"; sourceTree = "<group>"; };
 		22DD41AECA8B4A1C987F198A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9034BAB0F0A4133A7133947 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		F1B587F119533A7500BC1FF6 /* plusone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plusone@2x.png"; sourceTree = "<group>"; };
+		F1B587F319533B3E00BC1FF6 /* plusone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plusone.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,10 +171,11 @@
 		098F64E8195226AC008BA181 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				098F650C195272D9008BA181 /* Hands */,
-				098F6507195272B4008BA181 /* Head */,
-				098F6501195257D1008BA181 /* Title */,
 				098F64FC195257B6008BA181 /* Wallpaper */,
+				098F6501195257D1008BA181 /* Title */,
+				098F650C195272D9008BA181 /* Hands */,
+				F1B587EE19533A1D00BC1FF6 /* Plus One */,
+				098F6507195272B4008BA181 /* Head */,
 				098F64EA195226C3008BA181 /* Photo Icon */,
 				098F64E9195226B4008BA181 /* Checkmark Icons */,
 			);
@@ -267,6 +272,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F1B587EE19533A1D00BC1FF6 /* Plus One */ = {
+			isa = PBXGroup;
+			children = (
+				F1B587F319533B3E00BC1FF6 /* plusone.png */,
+				F1B587F119533A7500BC1FF6 /* plusone@2x.png */,
+			);
+			name = "Plus One";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -318,7 +332,7 @@
 				TargetAttributes = {
 					0914899D194CE20F008D2E38 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = P3FTU9Z297;
+						DevelopmentTeam = NKLK842SGM;
 					};
 					091489AF194CE20F008D2E38 = {
 						CreatedOnToolsVersion = 6.0;
@@ -353,6 +367,7 @@
 				098F650B195272D0008BA181 /* head@2x.png in Resources */,
 				091489A9194CE20F008D2E38 /* Main.storyboard in Resources */,
 				098F64F419522736008BA181 /* photoicon.png in Resources */,
+				F1B587F219533A7500BC1FF6 /* plusone@2x.png in Resources */,
 				098F64F819522744008BA181 /* checkboxgrey.png in Resources */,
 				098F64F519522736008BA181 /* photoicon@2x.png in Resources */,
 				098F650F195272E5008BA181 /* hands.png in Resources */,
@@ -365,6 +380,7 @@
 				098F6500195257CC008BA181 /* wallpaper@2x.png in Resources */,
 				098F650A195272D0008BA181 /* head.png in Resources */,
 				098F64F919522744008BA181 /* checkboxgrey@2x.png in Resources */,
+				F1B587F419533B3E00BC1FF6 /* plusone.png in Resources */,
 				091489AB194CE20F008D2E38 /* Images.xcassets in Resources */,
 				098F6504195257E9008BA181 /* title.png in Resources */,
 				098F6505195257E9008BA181 /* title@2x.png in Resources */,

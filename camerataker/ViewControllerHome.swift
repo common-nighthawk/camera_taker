@@ -11,8 +11,10 @@ import CoreLocation
 
 class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UITextFieldDelegate, CLLocationManagerDelegate {
 
-    @IBOutlet var changeMemWait : UILabel
 
+    @IBOutlet var changeMemImage : UIImageView
+    
+    
     let locationManager = CLLocationManager()
     var textHacker = ""
     
@@ -21,6 +23,7 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
         super.viewDidLoad()
         self.navigationController.navigationBar.hidden = true;
         self.textHacker != ""
+        self.changeMemImage.hidden = true
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
@@ -35,7 +38,8 @@ class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UIT
             if (!error) {
                 // Success! We got back an image...bind the image returned in the closure to the changeImage UIImageView
                 if self.textHacker != "" {
-                    self.changeMemWait.text = "(a memory is waiting for you)"
+                    self.changeMemImage.hidden = false
+                    
                 }
             }
         })
