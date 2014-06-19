@@ -42,6 +42,25 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
         var myLong = locationManager.location.coordinate.longitude
         
         
+        var counterlat = 0
+        var counterlong = 0
+        var answerLat = ""
+        var answerLong = ""
+        
+        for x in "\(myLat)" {
+            if x == "." { counterlat = 1 }
+            if counterlat < 8 { answerLat += x }
+            counterlat += 1
+        }
+        for x in "\(myLong)" {
+            if x == "." { counterlong = 1 }
+            if counterlong < 8 { answerLong += x }
+            counterlong += 1
+        }
+        
+        self.youLatDisplay.text = answerLat
+        self.youLongDisplay.text = answerLong
+        self.changeTextView.text = "Bads news!--there's no memory within a block of your current location.  \n\nCreate a memory here so that someone else can stumble upon it.  And keep exploring your neightborhood and checking back!"
 
         var testLocation = CLLocation(latitude: myLat, longitude: myLong)
         self.fetchImageWithCLLocation(testLocation, handler: {
@@ -50,35 +69,8 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
             {
                 // Success! We got back an image...bind the image returned in the closure to the changeImage UIImageView
                 
-                
-                var counterlat = 0
-                var counterlong = 0
-                var answerLat = ""
-                var answerLong = ""
-                
-                for x in "\(myLat)" {
-                    if x == "." { counterlat = 1 }
-                    if counterlat < 8 { answerLat += x }
-                    counterlat += 1
-                }
-                for x in "\(myLong)" {
-                    if x == "." { counterlong = 1 }
-                    if counterlong < 8 { answerLong += x }
-                    counterlong += 1
-                }
-
-                
-                
-                
-                
-                
-                self.youLatDisplay.text = answerLat
-                self.youLongDisplay.text = answerLong
                 weakSelf!.changeImage.image = image
                 self.changeTextView.text = self.textHacker
-                
-                
-                
                 
             }
         })
@@ -162,10 +154,6 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
                             handler(response, image, error)
                         }
                     })
-                } else {
-                    if self.changeTextView.text == "" {
-                        self.changeTextView.text = "Keep walking around!"
-                    }
                 }
             })
         }

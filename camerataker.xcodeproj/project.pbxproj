@@ -332,7 +332,7 @@
 				TargetAttributes = {
 					0914899D194CE20F008D2E38 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = NKLK842SGM;
+						DevelopmentTeam = P3FTU9Z297;
 					};
 					091489AF194CE20F008D2E38 = {
 						CreatedOnToolsVersion = 6.0;
