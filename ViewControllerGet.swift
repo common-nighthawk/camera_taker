@@ -16,6 +16,7 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     
     @IBOutlet var changeImage : UIImageView
     @IBOutlet var changeTextView : UITextView
+
     @IBOutlet var youLatDisplay : UILabel = nil
     @IBOutlet var youLongDisplay : UILabel = nil
  

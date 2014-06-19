@@ -106,8 +106,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.imageView.image = chosenImage
         self.dismissModalViewControllerAnimated(true)
         var imageData: NSData = UIImageJPEGRepresentation(chosenImage, 0.1)
-        
-        checkButtonChangeColor.enabled = true
     }
     
     // sets the actual long and lat values to the variables and convert to strings with 6 deceimal places
@@ -137,7 +135,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // submit memory button
     @IBAction func btnCaptureMem(sender : UIButton) {
-        if (textMem.text != "") && (imageView.image != nil) {
+        if (imageView.image == nil) {changeError.text="Please enter both text and an image to submit"}
+        else if (textMem.text == "") {changeError.text="Please enter both text and an image to submit"}
+        else {
             var myText = textMem.text
             self.view.endEditing(true)
             
@@ -167,9 +167,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             textMem.text = ""
             imageView.image = nil
+            changeError.text=""
             }
-        else {
-            changeError.text="Please enter both text and an image to submit"
-        }
     }
 }
