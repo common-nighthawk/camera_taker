@@ -41,24 +41,24 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
         var myLong = locationManager.location.coordinate.longitude
         
         
-//        var counterlat = 0
-//        var counterlong = 0
-//        var answerLat = ""
-//        var answerLong = ""
-//        
-//        for x in "\(myLat)" {
-//            if x == "." { counterlat = 1 }
-//            if counterlat < 8 { answerLat += x }
-//            counterlat += 1
-//        }
-//        for x in "\(myLong)" {
-//            if x == "." { counterlong = 1 }
-//            if counterlong < 8 { answerLong += x }
-//            counterlong += 1
-//        }
-//        
-//        self.youLatDisplay.text = answerLat
-//        self.youLongDisplay.text = answerLong
+        var counterlat = 0
+        var counterlong = 0
+        var answerLat = ""
+        var answerLong = ""
+        
+        for x in "\(myLat)" {
+            if x == "." { counterlat = 1 }
+            if counterlat < 8 { answerLat += x }
+            counterlat += 1
+        }
+        for x in "\(myLong)" {
+            if x == "." { counterlong = 1 }
+            if counterlong < 8 { answerLong += x }
+            counterlong += 1
+        }
+        
+        self.youLatDisplay.text = answerLat
+        self.youLongDisplay.text = answerLong
 //        self.changeTextView.text = "There's no memory here \n\nCreate one in this spot for the next person to stumble on.  \n\nAnd keep walking around to find one in your neighborhood."
         println("test1")
 
