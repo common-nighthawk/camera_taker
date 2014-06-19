@@ -16,8 +16,9 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     
     @IBOutlet var changeImage : UIImageView
     @IBOutlet var changeTextView : UITextView
-    @IBOutlet var yourLatDisplay : UILabel
-    @IBOutlet var yourLongDisplay : UILabel
+    @IBOutlet var youLatDisplay : UILabel = nil
+    @IBOutlet var youLongDisplay : UILabel = nil
+ 
 
     
     
@@ -39,6 +40,8 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
         weak var weakSelf : ViewControllerGet? = self;
         var myLat = locationManager.location.coordinate.latitude
         var myLong = locationManager.location.coordinate.longitude
+        
+        
 
         var testLocation = CLLocation(latitude: myLat, longitude: myLong)
         self.fetchImageWithCLLocation(testLocation, handler: {
@@ -46,8 +49,37 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
             if (!error)
             {
                 // Success! We got back an image...bind the image returned in the closure to the changeImage UIImageView
+                
+                
+                var counterlat = 0
+                var counterlong = 0
+                var answerLat = ""
+                var answerLong = ""
+                
+                for x in "\(myLat)" {
+                    if x == "." { counterlat = 1 }
+                    if counterlat < 8 { answerLat += x }
+                    counterlat += 1
+                }
+                for x in "\(myLong)" {
+                    if x == "." { counterlong = 1 }
+                    if counterlong < 8 { answerLong += x }
+                    counterlong += 1
+                }
+
+                
+                
+                
+                
+                
+                self.youLatDisplay.text = answerLat
+                self.youLongDisplay.text = answerLong
                 weakSelf!.changeImage.image = image
                 self.changeTextView.text = self.textHacker
+                
+                
+                
+                
             }
         })
     }
