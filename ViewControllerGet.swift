@@ -14,11 +14,22 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
     let locationManager = CLLocationManager()
     var textHacker = ""
     
-    @IBOutlet var changeText : UILabel
     @IBOutlet var changeImage : UIImageView
+    @IBOutlet var changeTextView : UITextView
+    @IBOutlet var yourLatDisplay : UILabel
+    @IBOutlet var yourLongDisplay : UILabel
 
+    
+    
     // after the view loads, start getting location
     override func viewDidLoad() {
+        
+        changeTextView.editable = false
+        changeTextView.layer.borderWidth = 1.0
+        changeTextView.layer.cornerRadius = 8.0
+        changeTextView.scrollEnabled = true
+        
+        
         super.viewDidLoad()
         self.navigationController.navigationBar.hidden = false;
         locationManager.delegate = self
@@ -36,7 +47,7 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
             {
                 // Success! We got back an image...bind the image returned in the closure to the changeImage UIImageView
                 weakSelf!.changeImage.image = image
-                self.changeText.text = self.textHacker
+                self.changeTextView.text = self.textHacker
             }
         })
     }
@@ -120,8 +131,8 @@ class ViewControllerGet: UIViewController, UIImagePickerControllerDelegate, UINa
                         }
                     })
                 } else {
-                    if self.changeText.text == "" {
-                        self.changeText.text = "Keep walking around!"
+                    if self.changeTextView.text == "" {
+                        self.changeTextView.text = "Keep walking around!"
                     }
                 }
             })

@@ -13,7 +13,7 @@ import CoreLocation
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate , UITextFieldDelegate, CLLocationManagerDelegate {
     
-
+    
     // init location manager and set coordinates to 0
     let locationManager = CLLocationManager()
     var myLong = 0.0
@@ -31,7 +31,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         textMem.layer.borderWidth = 1.0
         textMem.layer.cornerRadius = 8.0
+        textMem.scrollEnabled = true
+//
         
+//        imageView.layer.borderWidth = 1.0
+    
         
         
 //            [self setView:[[[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease]];
@@ -72,6 +76,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet var imageView : UIImageView = nil
     @IBOutlet var textMem : UITextView = nil
     @IBOutlet var changeError : UILabel
+    @IBOutlet var checkButtonChangeColor : UIButton
     
     
     override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
@@ -101,6 +106,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.imageView.image = chosenImage
         self.dismissModalViewControllerAnimated(true)
         var imageData: NSData = UIImageJPEGRepresentation(chosenImage, 0.1)
+        
+        checkButtonChangeColor.enabled = true
     }
     
     // sets the actual long and lat values to the variables and convert to strings with 6 deceimal places
