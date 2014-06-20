@@ -11,86 +11,107 @@ import CoreLocation
 
 class ViewControllerHome: UIViewController, UINavigationControllerDelegate , UITextFieldDelegate, CLLocationManagerDelegate {
 
-    @IBOutlet var changeMemWait : UILabel
-    var myLong = 0.0
-    var myLat = 0.0
-    var answerLat = ""
-    var answerLong = ""
-    var once = 1
+
+    @IBOutlet var changeMemImage : UIImageView
     
+    let locationManager = CLLocationManager()
+    var textHacker = ""
+    
+    // after the view loads, start getting location
     override func viewDidLoad() {
         super.viewDidLoad()
-        //var timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        self.navigationController.navigationBar.hidden = true;
+        self.textHacker != ""
+        self.changeMemImage.hidden = true
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+        
+        weak var weakSelf : ViewControllerHome? = self;
+        var myLat = locationManager.location.coordinate.latitude
+        var myLong = locationManager.location.coordinate.longitude
+        
+        var testLocation = CLLocation(latitude: myLat, longitude: myLong)
+        self.fetchImageWithCLLocation(testLocation, handler: {
+            (response: NSURLResponse!, image: UIImage!, error: NSError!) in
+            if (!error) {
+                // Success! We got back an image...bind the image returned in the closure to the changeImage UIImageView
+                if self.textHacker != "" {
+                    self.changeMemImage.hidden = false
+                    
+                }
+            }
+        })
+    }
+    
+    func locationManager(manager:CLLocationManager!, didUpdateLocations locations:CLLocation[]) {
+        var mostRecentLocation = locations[0]
     }
 
+    // standard
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-//    // first function we need to define and nest
-//    func locationManager(manager:CLLocationManager!, didUpdateLocations locations:AnyObject[]) {
-//        println("test1")
-//        if once == 1 {
-//            println("test2")
-//            myLat = locations[0].coordinate.latitude
-//            myLong = locations[0].coordinate.longitude * -1  //SEE IF WE CAN FIX THIS THROUGH THE API
-//            println(myLat)
-//            println(myLong)
-//            
-//            var counterlat = 0
-//            var counterlong = 0
-//            
-//            for x in "\(myLat)" {
-//                if x == "." { counterlat = 1 }
-//                if counterlat < 8 { answerLat += x }
-//                counterlat += 1
-//            }
-//            for x in "\(myLong)" {
-//                if x == "." { counterlong = 1 }
-//                if counterlong < 8 { answerLong += x }
-//                counterlong += 1
-//            }
-//        }
-//        once += 1
-//    }
-//
-//    // second function we need to define and nest
-//    func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
-//        println("popl")
-//        var getText = ""
-//        var getUrl = ""
-//        
-//        if data.length == 4 {
-//            
-//        }
-//        else {
-//            changeMemWait.text = "(a memory is waiting for you)!!!!"
-//        }
-//    }
-//
-//
-//    // function that will run every minute with the functions defined above nested below
-//    func update() {
-//        println("test0")
-//        locationManager(manager: CLLocationManager?, didUpdateLocations: AnyObject[])
-//        
-//        if true {
-//
-//            var url = NSURL(string: "http://young-beach-6740.herokuapp.com/memories?latitude=\(answerLat)&longitude=\(answerLong)")
-//            println(url)
-//            
-//            var request = NSMutableURLRequest(URL: url)
-//            request.HTTPMethod = "GET"
-//            request.setValue("text/xml", forHTTPHeaderField: "X-Requested-With")
-//            
-//            var connection = NSURLConnection(request: request, delegate: self, startImmediately: false)
-//            connection.start()
-//        }
-//    
-//        connection(connection: connection, didReceiveData: data)
-//        
-//    }
+    
+
+    
+    func fetchImageWithCLLocation(location: CLLocation?, handler: ((NSURLResponse!, UIImage!, NSError!) -> Void)!) {
+        if (!location) {
+            return;
+        }
+        var request = NSMutableURLRequest();
+        request.URL = NSURL(string: self.parameterizedURLFromLocation(location!, baseURL: "http://nameless-reaches-8687.herokuapp.com/memories/"))
+        request.HTTPMethod = "GET"
+        request.setValue("text/xml", forHTTPHeaderField: "X-Requested-With")
+        
+        NSURLConnection.sendAsynchronousRequest(request,
+            queue: NSOperationQueue.mainQueue(),
+            completionHandler:{
+                (response: NSURLResponse!, data: NSData!, error: NSError!) in
+                var jsonResult: NSDictionary? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as? NSDictionary
+                if (!jsonResult) {
+                    return;
+                }
+                
+                var urlDictionary : NSDictionary = jsonResult!["image"] as NSDictionary
+                var urlToImage : AnyObject? = urlDictionary["url"] as AnyObject?
+                var textDictionary : NSString = jsonResult!["text"] as NSString
+                self.textHacker = textDictionary
+                
+                weak var weakSelf : ViewControllerHome? = self
+                if (urlToImage) {
+                    var kMaybeThisIsAnImage : String = urlToImage! as String
+                    println("kMaybeThisIsAnImage: \(kMaybeThisIsAnImage)")
+                    
+                    weakSelf!.fetchImageAtURL(kMaybeThisIsAnImage, handler: {
+                        (response: NSURLResponse!, image: UIImage!, error: NSError!) in
+                        if handler {
+                            handler(response, image, error)
+                        }
+                    })
+                }
+            })
+        }
+    
+    func fetchImageAtURL(url: String, handler: ((NSURLResponse!, UIImage!, NSError!) -> Void)!) {
+        var request = NSMutableURLRequest();
+        request.URL = NSURL(string: url)
+        request.HTTPMethod = "GET"
+        NSURLConnection.sendAsynchronousRequest(request,
+            queue: NSOperationQueue.mainQueue(),
+            completionHandler:{
+                (response: NSURLResponse!, data: NSData!, error: NSError!) in
+                var img : UIImage = UIImage(data: data!)
+                if handler {
+                    handler(response, img, error)
+                }
+            })
+        }
+    
+    func parameterizedURLFromLocation(location: CLLocation, baseURL: String) -> String {
+        println("\(baseURL)?latitude=\(location.coordinate.latitude)&longitude=\(location.coordinate.longitude)")
+        return  "\(baseURL)?latitude=\(location.coordinate.latitude)&longitude=\(location.coordinate.longitude)"
+    }
     
 }
-

@@ -4,12 +4,15 @@
 //
 //  Created by Apprentice on 6/14/14.
 //  Copyright (c) 2014 Skippers. All rights reserved.
-//
+//  
 
 import UIKit
 import CoreLocation
 
+
+
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate , UITextFieldDelegate, CLLocationManagerDelegate {
+    
     
     // init location manager and set coordinates to 0
     let locationManager = CLLocationManager()
@@ -21,9 +24,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // after the view loads, start getting location
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.navigationController.navigationBar.hidden = false;
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
+        
+        textMem.layer.borderWidth = 0.6
+        textMem.layer.cornerRadius = 6.0
+        textMem.scrollEnabled = true
+    }
+    
+
+    override func viewDidAppear(animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        
     }
     
     // standard
@@ -31,10 +46,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.didReceiveMemoryWarning()
     }
     
+    
     // tag textfield and image with variable names
-   
     @IBOutlet var imageView : UIImageView = nil
-    @IBOutlet var textMem : UITextField
+    @IBOutlet var textMem : UITextView = nil
+    @IBOutlet var changeError : UILabel = nil
+    @IBOutlet var checkButtonChangeColor : UIButton
     
     
     override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
@@ -57,13 +74,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.presentViewController(image, animated: true, completion: nil)
     }
     
-    // saves the photo to the variable
-    func imagePickerController(image: UIImagePickerController, didFinishPickingMediaWithInfo info: NSDictionary){
-        //println(image)
-        //println(info)
+    
+    //Initialize camera data string
+    func imagePickerController(image: UIImagePickerController, didFinishPickingMediaWithInfo info: NSDictionary) {
         var chosenImage: UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
         self.imageView.image = chosenImage
         self.dismissModalViewControllerAnimated(true)
+        var imageData: NSData = UIImageJPEGRepresentation(chosenImage, 0.1)
     }
     
     // sets the actual long and lat values to the variables and convert to strings with 6 deceimal places
@@ -90,35 +107,42 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         once += 1
     }
     
+    
     // submit memory button
     @IBAction func btnCaptureMem(sender : UIButton) {
-        // println("Button was clicked")
-        var myText = textMem.text
-        self.view.endEditing(true)
-        textMem.text = ""
-        imageView.image = nil
-
-        var postString = NSString(format: "text=\(myText)&latitude=\(answerLat)&longitude=\(answerLong)")
-        var postData = postString.dataUsingEncoding(NSUTF8StringEncoding)
-        var url = NSURL(string: "http://young-beach-6740.herokuapp.com/memories")
-        
-        // creating post request
-        var request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        request.HTTPBody = postData
-        request.setValue("text/xml", forHTTPHeaderField: "X-Requested-With")
-        
-        var connection = NSURLConnection(request: request, delegate: self, startImmediately: false)
-        connection.start()
-
-        
-        // ALERT BUTTON
-        let alert = UIAlertView()
-        alert.title = "Memory Created!"
-        alert.message = "You have shared a memory for the world to experience."
-        alert.addButtonWithTitle("the world ♥ you")
-        alert.show()
-        alert.delegate = nil
+        if (imageView.image == nil) {changeError.text="Please enter both text and an image to submit"}
+        else if (textMem.text == "") {changeError.text="Please enter both text and an image to submit"}
+        else {
+            var myText = textMem.text
+            self.view.endEditing(true)
+            
+            var url = "http://nameless-reaches-8687.herokuapp.com/memories"
+            
+            let manager = AFHTTPRequestOperationManager()
+            let params = ["text":myText, "latitude":answerLat, "longitude":answerLong]
+            
+            manager.POST(url, parameters: params,
+                constructingBodyWithBlock: {
+                    [weak self](formData) -> Void in
+                    formData.appendPartWithFileData(UIImageJPEGRepresentation(self?.imageView?.image, 0.9), name: "image", fileName: "picture.jpg", mimeType: "image/jpeg")
+                },
+                success: {(operation, response) -> Void in
+                    println(response)
+                },
+                failure: {(operation, response) -> Void in
+                    println(response)
+                })
+            
+            let alert = UIAlertView()
+            alert.title = "Memory Created!"
+            alert.message = "You have shared a memory for the world to experience."
+            alert.addButtonWithTitle("the world ♥'s you")
+            alert.show()
+            alert.delegate = nil
+            
+            textMem.text = ""
+            imageView.image = nil
+            changeError.text=""
+            }
     }
 }
-

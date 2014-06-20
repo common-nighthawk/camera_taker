@@ -3,7 +3,7 @@
 //  camerataker
 //
 //  Created by Apprentice on 6/14/14.
-//  Copyright (c) 2014 Skippers. All rights reserved.
+//  Copyright (c) 2014 Skippers; Daniel Deutsch, Sasha Grodzins, Michael Hamel, Andrew Larson. All rights reserved.
 //
 
 import UIKit
