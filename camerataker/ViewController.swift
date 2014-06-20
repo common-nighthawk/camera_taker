@@ -32,34 +32,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         textMem.layer.borderWidth = 0.6
         textMem.layer.cornerRadius = 6.0
         textMem.scrollEnabled = true
-//
-        
-//        imageView.layer.borderWidth = 1.0
-    
-        
-        
-//            [self setView:[[[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease]];
-//            [[self view] setBackgroundColor:[UIColor colorWithRed:0.0 green:.34 blue:.74 alpha:1]];
-//
-
-//            
-//            // For the border and rounded corners
-//            [[textViewStatus layer] setBorderColor:[[UIColor whiteColor] CGColor]];
-//            [[textViewStatus layer] setBorderWidth:2.3];
-//            [[textViewStatus layer] setCornerRadius:15];
-//            [textViewStatus setClipsToBounds: YES];
-//            
-//            [textViewStatus setText:@"iOSDeveloperTips.com"];
-//            
-//            [[self view] addSubview:textViewStatus];
-//        
-        
-//   UITextView.layerClass()
-        
     }
     
 
-// from Sid. don't know what it does
     override func viewDidAppear(animated: Bool)
     {
         super.viewDidAppear(animated)
@@ -75,7 +50,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // tag textfield and image with variable names
     @IBOutlet var imageView : UIImageView = nil
     @IBOutlet var textMem : UITextView = nil
-    @IBOutlet var changeError : UILabel
+    @IBOutlet var changeError : UILabel = nil
     @IBOutlet var checkButtonChangeColor : UIButton
     
     

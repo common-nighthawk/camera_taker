@@ -157,7 +157,6 @@
                         <outlet property="checkButtonChangeColor" destination="pfc-3C-SRR" id="RWk-fm-5ds"/>
                         <outlet property="imageView" destination="YQw-2k-0xC" id="Ac0-fN-IDn"/>
                         <outlet property="textMem" destination="Liu-Hh-h5z" id="HCD-AA-XSG"/>
-                        <outlet property="verticalText" destination="9II-cw-GmR" id="Hga-0h-GLg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -286,6 +285,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="eKQ-q2-OlQ"/>
+        <segue reference="3v8-Ui-MN7"/>
     </inferredMetricsTieBreakers>
 </document>
